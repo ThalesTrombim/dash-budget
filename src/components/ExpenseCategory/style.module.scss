@@ -1,0 +1,14 @@
+.expenseCategory {
+  &Container {
+
+  }
+
+  &Title {
+    display: flex;
+    gap: .5rem;
+  }
+
+  &Icon {
+    background-color: red;
+  }
+}
