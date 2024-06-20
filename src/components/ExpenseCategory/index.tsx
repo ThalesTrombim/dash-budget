@@ -8,17 +8,25 @@ function ExpenseCategory() {
     <div className={style.expenseCategoryContainer}>
       <div className={style.expenseCategoryTitle}>
         <div className={style.expenseCategoryIcon}>
-          <MdOutlineKitchen />
+          <MdOutlineKitchen size={24}/>
         </div>
 
         <h3>Category name</h3>
       </div>
 
-      <ExpenseItem
-        name='Tomada'
-        amount={200}
-        date='06/06/2024'
-      />
+
+      <div className={style.expenseCategoryItemList}>
+        <ExpenseItem
+          name='Tomada'
+          amount={200}
+          date='06/06/2024'
+        />
+        <ExpenseItem
+          name='Tomada'
+          amount={200}
+          date='06/06/2024'
+        />
+      </div>
     </div>
   )
 }

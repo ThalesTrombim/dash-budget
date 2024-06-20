@@ -10,8 +10,8 @@ function ExpenseItem({ name, amount, date }: IProps) {
   return (
     <div className={style.expenseItemContainer}>
       <span>{name}</span>
-      <span>{amount}</span>
       <span>{date}</span>
+      <span>{amount}</span>
     </div>
   )
 }

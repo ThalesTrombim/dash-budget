@@ -1,6 +1,11 @@
 .expenseItem {
   &Container {
     display: flex;
-    gap: .5rem;
+    gap: 1rem;
+
+    font-weight: 500;
+    border: 1px solid blue;
+    border-radius: .25rem;
+    padding: 1rem;
   }
 }

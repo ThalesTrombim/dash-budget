@@ -1,12 +1,13 @@
 import './App.css';
+import AddExpense from './components/AddExpense';
 import ExpenseCategory from './components/ExpenseCategory';
 
 function App() {
 
   return (
     <>
-      <h1>Teste</h1>
-      <ExpenseCategory />
+      {/* <ExpenseCategory /> */}
+      <AddExpense />
     </>
   )
 }
