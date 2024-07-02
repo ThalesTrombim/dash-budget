@@ -3,29 +3,27 @@ import { MdOutlineKitchen } from "react-icons/md";
 
 import style from "./style.module.scss";
 
-function ExpenseCategory() {
+interface IProps {
+  name: string
+  color: string
+  icon: string
+}
+
+function ExpenseCategory({ name, color, icon }: IProps) {
+
+
   return (
     <div className={style.expenseCategoryContainer}>
       <div className={style.expenseCategoryTitle}>
-        <div className={style.expenseCategoryIcon}>
+        <div className={style.expenseCategoryIcon} style={{backgroundColor: color}}>
           <MdOutlineKitchen size={24}/>
         </div>
 
-        <h3>Category name</h3>
+        <h3>{name}</h3>
       </div>
 
 
       <div className={style.expenseCategoryItemList}>
-        <ExpenseItem
-          name='Tomada'
-          amount={200}
-          date='06/06/2024'
-        />
-        <ExpenseItem
-          name='Tomada'
-          amount={200}
-          date='06/06/2024'
-        />
       </div>
     </div>
   )

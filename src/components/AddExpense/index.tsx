@@ -8,16 +8,14 @@ function AddExpense() {
   // const [newExpense, setNewExpense] = useState<any>();
   const [expenseName, setExpenseName] = useState<string>('');
   const [expenseAmount, setExpenseAmount] = useState<number>(0);
-  const [expenseCategory, setExpenseCategory] = useState<string>('TESTES');
+  // const [expenseCategory, setExpenseCategory] = useState<string>('TESTES');
   const [expenseDateToday, setExpenseDateToday] = useState<boolean>(false);
   const [expenseDate, setExpenseDate] = useState<Date>();
-
-  
 
   const newExpense = {
     name: expenseName,
     amount: expenseAmount,
-    category: expenseCategory,
+    // category: expenseCategory,
     date: "FUNCAO PARA FORMATAR A DATA",
   }
 
@@ -43,7 +41,7 @@ function AddExpense() {
     console.log('timestamp date', expenseDateFormated(expenseDate))
     console.log(expenseName);
     console.log(expenseAmount);
-    console.log(expenseCategory);
+    // console.log(expenseCategory);
     console.log(expenseDateToday);
     console.log(expenseDate);
 
