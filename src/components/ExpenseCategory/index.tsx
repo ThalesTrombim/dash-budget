@@ -1,22 +1,58 @@
-import ExpenseItem from '../ExpenseItem'
 import { MdOutlineKitchen } from "react-icons/md";
+import { PiPottedPlantBold } from "react-icons/pi";
+import { BiSolidCabinet } from "react-icons/bi";
+import { MdOutlineFormatPaint } from "react-icons/md";
+import { LuLampCeiling } from "react-icons/lu";
+import { GiBrickWall } from "react-icons/gi";
 
 import style from "./style.module.scss";
 
 interface IProps {
   name: string
   color: string
-  icon: string
+  icon?: string
 }
 
-function ExpenseCategory({ name, color, icon }: IProps) {
+function DynamicComponent({icon}: {icon: string}) {
+  console.log('icone: ', icon)
+  return (
+    <>
+      {
+        icon === 'PiPottedPlantBold' &&
+        <PiPottedPlantBold size={24} color="#fff"/>
+      }
+      {
+        icon === 'BiSolidCabinet' &&
+        <BiSolidCabinet size={24} color="#fff"/>
+      }
+      {
+        icon === 'MdOutlineKitchen' &&
+        <MdOutlineKitchen size={24} color="#fff"/>
+      }
+      {
+        icon === 'MdOutlineFormatPaint' &&
+        <MdOutlineFormatPaint size={24} color="#fff"/>
+      }
+      {
+        icon === 'LuLampCeiling' &&
+        <LuLampCeiling size={24} color="#fff"/>
+      }
+      {
+        icon === 'GiBrickWall' &&
+        <GiBrickWall size={24} color="#fff"/>
+      }
+    </>
+  )
+}
 
-
+function ExpenseCategory({ name, color, icon = 'PiPottedPlantBold'}: IProps) {
+  
   return (
     <div className={style.expenseCategoryContainer}>
       <div className={style.expenseCategoryTitle}>
         <div className={style.expenseCategoryIcon} style={{backgroundColor: color}}>
-          <MdOutlineKitchen size={24}/>
+          {/* <MdOutlineKitchen size={24} color="#fff"/> */}
+          <DynamicComponent icon={icon} />
         </div>
 
         <h3>{name}</h3>
