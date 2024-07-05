@@ -5,6 +5,7 @@ import Expenses from './pages/Expenses';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from './firebase.config';
 import { useEffect, useState } from 'react';
+import AddExpense from './components/AddExpense';
 
 
 async function getCategories() {
@@ -13,7 +14,6 @@ async function getCategories() {
 
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log('doc', doc.data())
     data.push({...doc.data()});
   });
 
@@ -34,8 +34,8 @@ function App() {
 
   return (
     <>
-      {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />}
-      {/* {<Expenses categories={categories} />} */}
+      {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
+      <AddExpense data={categories} />
     </>
   )
 }

@@ -14,7 +14,6 @@ interface IProps {
 }
 
 function DynamicComponent({icon}: {icon: string}) {
-  console.log('icone: ', icon)
   return (
     <>
       {

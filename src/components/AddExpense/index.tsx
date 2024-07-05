@@ -4,44 +4,57 @@ import style from "./style.module.scss";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
-function AddExpense() {
-  // const [newExpense, setNewExpense] = useState<any>();
-  const [expenseName, setExpenseName] = useState<string>('');
-  const [expenseAmount, setExpenseAmount] = useState<number>(0);
-  // const [expenseCategory, setExpenseCategory] = useState<string>('TESTES');
-  const [expenseDateToday, setExpenseDateToday] = useState<boolean>(false);
-  const [expenseDate, setExpenseDate] = useState<Date>();
+import { CurrencyInput } from 'react-currency-mask';
 
-  const newExpense = {
-    name: expenseName,
-    amount: expenseAmount,
-    // category: expenseCategory,
-    date: "FUNCAO PARA FORMATAR A DATA",
-  }
+function AddExpense({ data }: {data: any}) {
+  // const [newExpense, setNewExpense] = useState<any>();
+
+  const [expenseName, setExpenseName] = useState<string>('');
+  const [expenseAmount, setExpenseAmount] = useState<number | string>(0);
+  const [expenseCategory, setExpenseCategory] = useState<number | null>();
+  const [expenseDateToday, setExpenseDateToday] = useState<boolean>(false);
+  const [expenseDate, setExpenseDate] = useState<Date | null>();
 
   const expenseDateFormated = (date?: Date) => {
     if(expenseDateToday) return new Date().getTime();
     if(date) return date.getTime();
   };
 
+  const newExpense = {
+    name: expenseName,
+    amount: expenseAmount,
+    category: expenseCategory,
+    date: expenseDate ? expenseDateFormated(expenseDate) : '',
+  }
+
   async function handleAddItem() {
-    const { name, amount, date } = newExpense;
+    const { name, amount, date, category } = newExpense;
     const expenseCollection = collection(db, 'expenses');
   
     await addDoc(expenseCollection, {
       name,
-      amount, 
+      amount,
+      category,
       date
     })
+
+    resetStates();
+  }
+
+  function resetStates() {
+    setExpenseName('');
+    setExpenseAmount(0);
+    setExpenseCategory(null);
+    setExpenseDateToday(false);
+    setExpenseDate(null);
   }
 
   function handleSubmit(e:any) {
     e.preventDefault();
 
-    console.log('timestamp date', expenseDateFormated(expenseDate))
     console.log(expenseName);
     console.log(expenseAmount);
-    // console.log(expenseCategory);
+    console.log(expenseCategory);
     console.log(expenseDateToday);
     console.log(expenseDate);
 
@@ -66,13 +79,21 @@ function AddExpense() {
 
         <div className={style.addExpenseInput}>
           <label htmlFor="item_amount">Valor</label>
-          <input 
-            type="number" 
-            name="item_amount" 
-            id="item_amount"
+          <CurrencyInput
+            onChangeValue={(_, originalValue) => {
+              setExpenseAmount(originalValue);
+            }}
             value={expenseAmount}
-            onChange={(e) => setExpenseAmount(parseFloat(e.target.value))}
           />
+        </div>
+
+        <div className={style.addExpenseInput}>
+          <label htmlFor="item_category">Categoria</label>
+          <select onChange={(e) => setExpenseCategory(parseFloat(e.target.value))} name="item_category" id="item_category">
+            {data.map((category: any) => (
+              <option value={category.categoryId}>{category.name}</option>
+            ))}
+          </select>
         </div>
 
         <div className={style.addExpenseCheckbox}>
@@ -89,10 +110,9 @@ function AddExpense() {
         <div className={style.addExpenseInput}>
           <label htmlFor="item_date">Data</label>
           <input 
-            type="date" 
+            type="date"
             name="item_date" 
-            id="item_date" 
-            // value={expenseDate} 
+            id="item_date"
             onChange={(e) => setExpenseDate(new Date(e.target.value))}
           />
         </div>
