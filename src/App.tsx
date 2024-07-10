@@ -6,6 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from './firebase.config';
 import { useEffect, useState } from 'react';
 import AddExpense from './components/AddExpense';
+import { SuccessModalProvider } from './contexts/SuccessModalContext';
 
 
 async function getCategories() {
@@ -33,10 +34,10 @@ function App() {
   }, [])
 
   return (
-    <>
-      {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
-      <AddExpense data={categories} />
-    </>
+    <SuccessModalProvider>
+      {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />}
+      {/* <AddExpense data={categories} /> */}
+    </SuccessModalProvider>
   )
 }
 

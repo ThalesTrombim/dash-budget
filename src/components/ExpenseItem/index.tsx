@@ -1,3 +1,4 @@
+import { convertNumberToBRL } from "../../utils/monetary";
 import style from "./style.module.scss";
 
 interface IProps {
@@ -6,12 +7,15 @@ interface IProps {
   date: string //timestamp
 }
 
+
 function ExpenseItem({ name, amount, date }: IProps) {
   return (
     <div className={style.expenseItemContainer}>
-      <span>{name}</span>
-      <span>{date}</span>
-      <span>{amount}</span>
+      <div className={style.expenseItemNameDate}>
+        <span>{name}</span>
+        <span className={style.expenseItemDateText}>{date}</span>
+      </div>
+      <span>{convertNumberToBRL(amount)}</span>
     </div>
   )
 }
