@@ -5,16 +5,8 @@ import { MdOutlineFormatPaint } from "react-icons/md";
 import { LuLampCeiling } from "react-icons/lu";
 import { GiBrickWall } from "react-icons/gi";
 
-import style from "./style.module.scss";
-import ExpenseItem from "../ExpenseItem";
 
-interface IProps {
-  name: string
-  color: string
-  icon?: string
-}
-
-function DynamicComponent({icon}: {icon: string}) {
+function CategoryIcon({icon}: {icon: string}) {
   return (
     <>
       {
@@ -45,23 +37,4 @@ function DynamicComponent({icon}: {icon: string}) {
   )
 }
 
-function ExpenseCategory({ name, color, icon = 'PiPottedPlantBold'}: IProps) {
-  
-  return (
-    <div className={style.expenseCategoryContainer}>
-      <div className={style.expenseCategoryTitle}>
-        <div className={style.expenseCategoryIcon} style={{backgroundColor: color}}>
-          <DynamicComponent icon={icon} />
-        </div>
-
-        <h3>{name}</h3>
-      </div>
-
-      <div className={style.expenseCategoryItemList}>
-        <ExpenseItem amount={31.00} name="Teste" date="22/08/2022"/>
-      </div>
-    </div>
-  )
-}
-
-export default ExpenseCategory
+export default CategoryIcon;

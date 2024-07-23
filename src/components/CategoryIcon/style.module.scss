@@ -1,0 +1,22 @@
+.expenseItem {
+  &Container {
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 500;
+    border: 1px solid blue;
+    border-radius: .25rem;
+    padding: 1rem;
+  }
+
+  &NameDate {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    .expenseItemDateText {
+      font-size: .75rem;
+    }
+  }
+}
