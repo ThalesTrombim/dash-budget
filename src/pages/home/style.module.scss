@@ -1,5 +1,20 @@
 .expenseCategory {
   &Container {
+    background-color: #191b38;
+    padding: 1.75rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      text-align: start;
+    }
+  }
+
+  &List {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
@@ -21,5 +36,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
+
+    font-weight: 500;
   }
 }

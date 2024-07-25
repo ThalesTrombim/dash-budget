@@ -1,4 +1,5 @@
 import CategoryIcon from "../../components/CategoryIcon"
+import { convertNumberToBRL } from "../../utils/monetary";
 
 import style from './style.module.scss';
 
@@ -10,7 +11,7 @@ function Home() {
       color: "#ED820E",
       icon: "BiSolidCabinet",
       name: "Marcenaria",
-      total: 280
+      total: 280.2
     },
     {
       categoryId: 1,
@@ -29,20 +30,26 @@ function Home() {
 ]
 
   return (
-    <div>
-      <div>
-        {expensesCategory.map((item: any) => (
-          <div className={style.expenseCategoryContainer}>
-            <div className={style.expenseCategoryIcon} style={{backgroundColor: item.color}}>
-              <CategoryIcon icon={item.icon} />
-            </div>
+    <div >
+      <div className={style.expenseCategoryContainer}>
+        <h4>
+          Gastos
+        </h4>
 
-            <div className={style.expenseCategoryData}>
-              <span>{item.name}</span>
-              <span>{item.total}</span>
-            </div>            
-          </div>
-        ))}
+        <div>
+          {expensesCategory.map((item: any) => (
+            <div className={style.expenseCategoryList}>
+              <div className={style.expenseCategoryIcon} style={{backgroundColor: item.color}}>
+                <CategoryIcon icon={item.icon} />
+              </div>
+
+              <div className={style.expenseCategoryData}>
+                <span>{item.name}</span>
+                <span>{convertNumberToBRL(item.total)}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

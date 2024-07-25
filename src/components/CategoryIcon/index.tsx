@@ -5,7 +5,6 @@ import { MdOutlineFormatPaint } from "react-icons/md";
 import { LuLampCeiling } from "react-icons/lu";
 import { GiBrickWall } from "react-icons/gi";
 
-
 function CategoryIcon({icon}: {icon: string}) {
   return (
     <>
