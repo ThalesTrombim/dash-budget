@@ -1,7 +1,9 @@
+import { collection, getDocs } from "firebase/firestore";
 import CategoryIcon from "../../components/CategoryIcon"
 import { convertNumberToBRL } from "../../utils/monetary";
 
 import style from './style.module.scss';
+import { db } from "../../firebase.config";
 
 function Home() {
 
@@ -29,8 +31,20 @@ function Home() {
     }
 ]
 
+async function getExpenses() {
+  const querySnapshot = await getDocs(collection(db, "expenses"));
+  const data:any = [];
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    data.push({...doc.data()});
+  });
+
+  return data;
+}
+
   return (
-    <div >
+    <div>
       <div className={style.expenseCategoryContainer}>
         <h4>
           Gastos
