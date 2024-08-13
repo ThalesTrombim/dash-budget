@@ -4,8 +4,10 @@ import { convertNumberToBRL } from "../../utils/monetary";
 
 import style from './style.module.scss';
 import { db } from "../../firebase.config";
+import { useEffect, useState } from "react";
 
 function Home() {
+  const [ expenses, setExpenses] = useState([]);
 
   const expensesCategory = [
     {
@@ -23,7 +25,7 @@ function Home() {
       total: 282
     },
     {
-      categoryId: 1,
+      categoryId: 5,
       color: "#ED820E",
       icon: "BiSolidCabinet",
       name: "Revestimento",
@@ -43,6 +45,30 @@ async function getExpenses() {
   return data;
 }
 
+  useEffect(() => {
+    async function getCategoriesFirestore() {
+      const data = await getExpenses();
+      setExpenses(data);
+    }
+    getCategoriesFirestore();
+
+  }, [])
+
+
+  const totalAmount = (id: any) => {
+    let amount = 0;
+
+    const expenseCategory = expenses.filter((item: any) => item.category === id)
+
+    expenseCategory.forEach((item: any) => {
+      console.log('valor', item.amount)
+
+      amount = amount+item.amount
+    })
+
+    return amount;
+  }
+
   return (
     <div>
       <div className={style.expenseCategoryContainer}>
@@ -59,7 +85,7 @@ async function getExpenses() {
 
               <div className={style.expenseCategoryData}>
                 <span>{item.name}</span>
-                <span>{convertNumberToBRL(item.total)}</span>
+                <span>{convertNumberToBRL(totalAmount(item.categoryId))}</span>
               </div>
             </div>
           ))}
