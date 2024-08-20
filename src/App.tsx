@@ -34,12 +34,10 @@ function App() {
 
   }, [])
 
-  console.log(categories);
-
   return (
     <SuccessModalProvider>
       {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
-      {/* <AddExpense data={categories} /> */}
+      <AddExpense data={categories} />
       <Home />
     </SuccessModalProvider>
   )

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 function Home() {
   const [ expenses, setExpenses] = useState([]);
+  const [ categories, setCategories] = useState([]);
 
   const expensesCategory = [
     {
@@ -45,10 +46,28 @@ async function getExpenses() {
   return data;
 }
 
+  async function getCategories() {
+    const querySnapshot = await getDocs(collection(db, "categories"));
+    const data:any = [];
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      data.push({...doc.data()});
+    });
+
+    return data;
+  }
+
   useEffect(() => {
-    async function getCategoriesFirestore() {
+    async function getExpensesFirestore() {
       const data = await getExpenses();
       setExpenses(data);
+    }
+    getExpensesFirestore();
+    
+    async function getCategoriesFirestore() {
+      const data = await getCategories();
+      setCategories(data);
     }
     getCategoriesFirestore();
 
@@ -56,13 +75,9 @@ async function getExpenses() {
 
 
   const totalAmount = (id: any) => {
-    let amount = 0;
-
     const expenseCategory = expenses.filter((item: any) => item.category === id)
-
+    let amount = 0;
     expenseCategory.forEach((item: any) => {
-      console.log('valor', item.amount)
-
       amount = amount+item.amount
     })
 
@@ -77,7 +92,7 @@ async function getExpenses() {
         </h4>
 
         <div>
-          {expensesCategory.map((item: any) => (
+          {categories.map((item: any) => (
             <div className={style.expenseCategoryList}>
               <div className={style.expenseCategoryIcon} style={{backgroundColor: item.color}}>
                 <CategoryIcon icon={item.icon} />
