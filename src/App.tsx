@@ -9,6 +9,9 @@ import AddExpense from './components/AddExpense';
 import { SuccessModalProvider } from './contexts/SuccessModalContext';
 
 import Home from './pages/home';
+import SideMenu from './components/SideMenu';
+
+import './App.css'
 
 async function getCategories() {
   const querySnapshot = await getDocs(collection(db, "categories"));
@@ -35,11 +38,14 @@ function App() {
   }, [])
 
   return (
-    <SuccessModalProvider>
-      {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
-      <AddExpense data={categories} />
-      <Home />
-    </SuccessModalProvider>
+    <div className='app-container' >
+      <SideMenu />
+      <SuccessModalProvider>
+        {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
+        <AddExpense data={categories} />
+        <Home />
+      </SuccessModalProvider>
+    </div>
   )
 }
 
