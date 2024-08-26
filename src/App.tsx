@@ -12,6 +12,7 @@ import Home from './pages/home';
 import SideMenu from './components/SideMenu';
 
 import './App.css'
+import { BrowserRouter } from 'react-router-dom';
 
 async function getCategories() {
   const querySnapshot = await getDocs(collection(db, "categories"));
@@ -39,6 +40,8 @@ function App() {
 
   return (
     <div className='app-container' >
+
+      <BrowserRouter></BrowserRouter>
       <SideMenu />
       <SuccessModalProvider>
         {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}

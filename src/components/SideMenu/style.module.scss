@@ -4,5 +4,14 @@
     left: 0;
     top: 0;
     background-color: blue;
+    height: 100vh;
+    padding: 1rem;
+  }
+
+  &ItemsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
   }
 }
