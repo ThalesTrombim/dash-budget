@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import AddExpense from './components/AddExpense';
 import { SuccessModalProvider } from './contexts/SuccessModalContext';
 
+import Router from './Router';
+
 import Home from './pages/home';
 import SideMenu from './components/SideMenu';
 
@@ -40,13 +42,15 @@ function App() {
 
   return (
     <div className='app-container' >
-
-      <BrowserRouter></BrowserRouter>
       <SideMenu />
       <SuccessModalProvider>
         {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
-        <AddExpense data={categories} />
-        <Home />
+        {/* <AddExpense data={categories} />
+        <Home /> */}
+
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
       </SuccessModalProvider>
     </div>
   )
