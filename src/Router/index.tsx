@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import AddExpense from '../components/AddExpense';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase.config';
+import Home from '../pages/home';
 
 async function getCategories() {
   const querySnapshot = await getDocs(collection(db, "categories"));
@@ -30,6 +31,7 @@ function Router() {
   
   return (
     <Routes>
+      <Route path='/' element={<Home />} />
       <Route path='/add-expense' element={<AddExpense data={categories}/>} />
     </Routes>
   )

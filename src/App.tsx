@@ -42,13 +42,13 @@ function App() {
 
   return (
     <div className='app-container' >
-      <SideMenu />
       <SuccessModalProvider>
         {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
         {/* <AddExpense data={categories} />
         <Home /> */}
 
         <BrowserRouter>
+          <SideMenu />
           <Router />
         </BrowserRouter>
       </SuccessModalProvider>

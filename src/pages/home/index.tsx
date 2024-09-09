@@ -5,6 +5,7 @@ import { convertNumberToBRL } from "../../utils/monetary";
 import style from './style.module.scss';
 import { db } from "../../firebase.config";
 import { useEffect, useState } from "react";
+import Chart from "react-google-charts";
 
 function Home() {
   const [ expenses, setExpenses] = useState([]);
@@ -84,12 +85,37 @@ async function getExpenses() {
     return amount;
   }
 
+  const data = [
+    ["Task", "Hours per Day"],
+    ["Work", 11],
+    ["Eat", 2],
+    ["Commute", 2],
+    ["Watch TV", 2],
+    ["Sleep", 7], // CSS-style declaration
+  ];
+  
+  const options = {
+    title: "My Daily Activities",
+    pieHole: 0.4,
+    is3D: false,
+  };
+
   return (
     <div>
+      <Chart
+        chartType="PieChart"
+        width="100%"
+        height="400px"
+        data={data}
+        options={options}
+      />
+
       <div className={style.expenseCategoryContainer}>
         <h4>
           Gastos
         </h4>
+
+        
 
         <div>
           {categories.map((item: any) => (

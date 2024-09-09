@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import style from './style.module.scss';
 
 function SideMenu() {
@@ -6,21 +7,25 @@ function SideMenu() {
     {
       name: 'Dashboard',
       icon: 'BiSolidCabinet',
+      path: '/',
       active: false
     },
     {
       name: 'Add Expense',
       icon: 'BiSolidCabinet',
+      path: '/add-expense',
       active: false
     },
     {
       name: 'Add Category',
       icon: 'BiSolidCabinet',
+      path: '/add-category',
       active: false
     },
     {
       name: 'Graphs',
       icon: 'BiSolidCabinet',
+      path: '/graphs',
       active: false
     }
   ]
@@ -29,7 +34,12 @@ function SideMenu() {
     <div className={style.sideMenuContainer}>
       <div className={style.sideMenuItemsList}>
         {menuItems.map(item => (
-          <span>{item.name}</span>
+          <div key={item.name}>
+            <Link to={item.path}>
+              {/* {item.name} */}
+              <span>{item.name}</span>
+            </Link>
+          </div>
         ))}
       </div>
     </div>
