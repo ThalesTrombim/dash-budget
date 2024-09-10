@@ -41,18 +41,14 @@ function App() {
   }, [])
 
   return (
-    <div className='app-container' >
+    <BrowserRouter>
       <SuccessModalProvider>
-        {/* {categories.length === 0 ? <p>Loading...</p> : <Expenses categories={categories} />} */}
-        {/* <AddExpense data={categories} />
-        <Home /> */}
-
-        <BrowserRouter>
+        <div className='app-container' >
           <SideMenu />
           <Router />
-        </BrowserRouter>
+        </div>
       </SuccessModalProvider>
-    </div>
+    </BrowserRouter>
   )
 }
 

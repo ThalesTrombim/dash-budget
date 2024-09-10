@@ -101,37 +101,43 @@ async function getExpenses() {
   };
 
   return (
-    <div>
-      <Chart
-        chartType="PieChart"
-        width="100%"
-        height="400px"
-        data={data}
-        options={options}
-      />
+    // <div>
+    //   <Chart
+    //     chartType="PieChart"
+    //     width="100%"
+    //     height="400px"
+    //     data={data}
+    //     options={options}
+    //   />
 
-      <div className={style.expenseCategoryContainer}>
-        <h4>
-          Gastos
-        </h4>
+    //   <div className={style.expenseCategoryContainer}>
+    //     <h4>
+    //       Gastos
+    //     </h4>
 
-        
+    //     <div>
+    //       {categories.map((item: any) => (
+    //         <div className={style.expenseCategoryList}>
+    //           <div className={style.expenseCategoryIcon} style={{backgroundColor: item.color}}>
+    //             <CategoryIcon icon={item.icon} />
+    //           </div>
 
-        <div>
-          {categories.map((item: any) => (
-            <div className={style.expenseCategoryList}>
-              <div className={style.expenseCategoryIcon} style={{backgroundColor: item.color}}>
-                <CategoryIcon icon={item.icon} />
-              </div>
+    //           <div className={style.expenseCategoryData}>
+    //             <span>{item.name}</span>
+    //             <span>{convertNumberToBRL(totalAmount(item.categoryId))}</span>
+    //           </div>
+    //         </div>
+    //       ))}
+    //     </div>
+    //   </div>
+    // </div>
 
-              <div className={style.expenseCategoryData}>
-                <span>{item.name}</span>
-                <span>{convertNumberToBRL(totalAmount(item.categoryId))}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className={style.dashboardContainer}>
+      <div className={style.area1}>1</div>
+      <div className={style.area2}>2</div>
+      <div className={style.area3}>3</div>
+      <div className={style.area4}>4</div>
+      <div className={style.area5}>5</div>
     </div>
   )
 }
