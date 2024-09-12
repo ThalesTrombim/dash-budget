@@ -64,7 +64,6 @@ function AddExpense({ data }: {data: any}) {
   return (
     <div className={style.addExpenseContainer}>
       <div className={style.addExpenseFormArea}>
-
         <h3>Adicionar compra</h3>
 
         <form onSubmit={handleSubmit} className={style.addExpenseInputs}>
