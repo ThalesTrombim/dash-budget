@@ -51,15 +51,20 @@
 
   width: 100%;
 
+  label {
+    width: 74px;
+  }
+
   input, select {
     background-color: #fff;
-    height: 30px;
+    height: 35px;
     width: 75%;
 
     color: #37384d!important;
 
     border: 1px solid #e0e1e4;
     border-radius: .5rem;
+    padding: 0;
   }
 
   ::-webkit-calendar-picker-indicator {

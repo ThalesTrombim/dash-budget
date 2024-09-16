@@ -97,6 +97,16 @@ function AddExpense({ data }: {data: any}) {
             </select>
           </div>
 
+          <div className={style.addExpenseInput}>
+            <label htmlFor="item_date">Data</label>
+            <input 
+              type="date"
+              name="item_date" 
+              id="item_date"
+              onChange={(e) => setExpenseDate(new Date(e.target.value))}
+            />
+          </div>
+
           <div className={style.addExpenseCheckbox}>
             <input 
               type="checkbox"
@@ -106,16 +116,6 @@ function AddExpense({ data }: {data: any}) {
               onChange={(e) => setExpenseDateToday(e.target.checked)}
             />
             <label htmlFor="item_date_today">Data de Hoje?</label>
-          </div>
-
-          <div className={style.addExpenseInput}>
-            <label htmlFor="item_date">Data</label>
-            <input 
-              type="date"
-              name="item_date" 
-              id="item_date"
-              onChange={(e) => setExpenseDate(new Date(e.target.value))}
-            />
           </div>
 
           <button type="submit">Adicionar</button>
