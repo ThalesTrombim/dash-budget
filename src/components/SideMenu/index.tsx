@@ -32,15 +32,17 @@ function SideMenu() {
 
   return (
     <div className={style.sideMenuContainer}>
-      <div className={style.sideMenuItemsList}>
-        {menuItems.map(item => (
-          <div key={item.name}>
-            <Link to={item.path}>
-              {/* {item.name} */}
-              <span>{item.name}</span>
-            </Link>
-          </div>
-        ))}
+      <div className={style.sideMenuContent}>
+        <div className={style.sideMenuItemsList}>
+          {menuItems.map(item => (
+            <div key={item.name}>
+              <Link to={item.path}>
+                {/* {item.name} */}
+                <span>{item.name}</span>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

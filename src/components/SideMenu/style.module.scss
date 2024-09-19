@@ -2,10 +2,11 @@
   &Container {
     left: 0;
     top: 0;
-    background-color: #0d245a;
+    background-color: #f7f5f5;
     height: 100vh;
-    padding: 1rem;
     width: 12vw;
+    padding: .5rem;
+    color: #181818;
   }
 
   &ItemsList {
