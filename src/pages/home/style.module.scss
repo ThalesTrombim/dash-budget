@@ -1,48 +1,14 @@
-.expenseCategory {
-  &Container {
-    background-color: #191b38;
-    padding: 1.75rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-
-    h4 {
-      font-size: 1.25rem;
-      font-weight: 500;
-      text-align: start;
-    }
-  }
-
-  &List {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  &Icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: .5rem;
-    background-color: red;
-  }
-
-  &Data {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: .5rem;
-
-    font-weight: 500;
-  }
-}
-
 .dashboard {
   &Container {
+    width: 100%;
+    height: 100%;
+
+    padding: 1rem;
+    background-color: #f7f5f5;
+  }
+
+
+  &Content {
     padding: 1rem;
     display: grid;
     column-gap: 1rem;
@@ -50,8 +16,17 @@
     width: 100%;
     height: 100%;
 
+    background-color: #FFF;
+    border-radius: .5rem;
+
+    grid-template-areas:
+      "logo logo nav"
+      "sidenav content advert"
+    ;
+
     .area1 {
       background-color: blue;
+      border-radius: .5rem;
       grid-area: logo;
     }
     .area2 {
@@ -70,10 +45,5 @@
       grid-area: advert;
       background-color: thistle;
     }
-
-    grid-template-areas:
-      "logo logo nav"
-      "sidenav content advert"
-    ;
   }
 }
