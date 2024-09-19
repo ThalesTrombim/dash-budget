@@ -24,6 +24,9 @@
       "sidenav content advert"
     ;
 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
     .area1 {
       background-color: blue;
       border-radius: .5rem;
@@ -31,7 +34,11 @@
     }
     .area2 {
       grid-area: nav;
-      background-color: red;
+      // background-color: red;
+
+      border-radius: 1rem;
+      border: 1px solid #eaebef;
+      padding: .5rem;
     }
     .area3 {
       grid-area: sidenav;

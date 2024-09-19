@@ -6,6 +6,7 @@ import style from './style.module.scss';
 import { db } from "../../firebase.config";
 import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
+import PieChart from "../../components/PieChart";
 
 function Home() {
   const [ expenses, setExpenses] = useState([]);
@@ -85,26 +86,13 @@ async function getExpenses() {
     return amount;
   }
 
-  const data = [
-    ["Task", "Hours per Day"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7], // CSS-style declaration
-  ];
   
-  const options = {
-    title: "My Daily Activities",
-    pieHole: 0.4,
-    is3D: false,
-  };
 
   return (
     <div className={style.dashboardContainer}>
       <div className={style.dashboardContent}>
         <div className={style.area1}>1</div>
-        <div className={style.area2}>2</div>
+        <div className={style.area2}><PieChart /></div>
         <div className={style.area3}>3</div>
         <div className={style.area4}>4</div>
         <div className={style.area5}>5</div>
