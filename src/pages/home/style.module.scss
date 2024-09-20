@@ -17,7 +17,8 @@
     height: 100%;
 
     background-color: #FFF;
-    border-radius: .5rem;
+    border-radius: 1rem;
+    border: 1px solid #eaebef;
 
     grid-template-areas:
       "logo logo nav"
@@ -28,9 +29,11 @@
     grid-template-rows: 1fr 1fr;
 
     .area1 {
-      background-color: blue;
-      border-radius: .5rem;
       grid-area: logo;
+
+      border-radius: 1rem;
+      border: 1px solid #eaebef;
+      padding: .5rem;
     }
     .area2 {
       grid-area: nav;
