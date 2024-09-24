@@ -56,10 +56,6 @@ function ExpenseCategory({ name, color, icon = 'PiPottedPlantBold'}: IProps) {
 
         <h3>{name}</h3>
       </div>
-
-      <div className={style.expenseCategoryItemList}>
-        <ExpenseItem amount={31.00} name="Teste" date="22/08/2022"/>
-      </div>
     </div>
   )
 }

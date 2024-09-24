@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
 import PieChart from "../../components/PieChart";
 import LineChart from "../../components/LineChart";
+import ExpenseCategoryList from "../../components/ExpenseCategoryList";
 
 function Home() {
   const [ expenses, setExpenses] = useState([]);
@@ -87,14 +88,12 @@ async function getExpenses() {
     return amount;
   }
 
-  
-
   return (
     <div className={style.dashboardContainer}>
       <div className={style.dashboardContent}>
         <div className={style.area1}><LineChart /></div>
         <div className={style.area2}><PieChart /></div>
-        <div className={style.area3}>3</div>
+        <div className={style.area3}> <ExpenseCategoryList /> </div>
         <div className={style.area4}>4</div>
         <div className={style.area5}>5</div>
       </div>

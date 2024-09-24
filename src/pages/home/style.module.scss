@@ -45,7 +45,10 @@
     }
     .area3 {
       grid-area: sidenav;
-      background-color: green;
+      
+      border-radius: 1rem;
+      border: 1px solid #eaebef;
+      padding: .5rem;
     }
     .area4 {
       grid-area: content;
