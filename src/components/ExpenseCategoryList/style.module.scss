@@ -1,9 +1,22 @@
 .expenseCategoryList {
   &Container {
     height: 100%;
-
     display: flex;
+
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  &Items {
+    height: 100%;
+
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &Link {
+    text-decoration: underline;
   }
 }

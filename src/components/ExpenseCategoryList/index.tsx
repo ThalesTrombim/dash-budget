@@ -4,6 +4,7 @@ import { db } from '../../firebase.config';
 import ExpenseCategory from '../ExpenseCategory';
 
 import style from './style.module.scss';
+import { Link } from 'react-router-dom';
 
 function ExpenseCategoryList() {
   const [categories, setCategories] = useState([]);
@@ -32,11 +33,21 @@ function ExpenseCategoryList() {
 
   return (
     <div className={style.expenseCategoryListContainer}>
-      {categories.map((item: any) => (
-        <div key={item.name}>
-          <ExpenseCategory name={item.name} color={item.color} icon={item.icon} />
-        </div>
-      ))}
+
+      <div className={style.expenseCategoryListItems}>
+
+        {categories.map((item: any) => (
+          <div className='' key={item.name}>
+            <ExpenseCategory name={item.name} color={item.color} icon={item.icon} />
+          </div>
+        ))}
+      </div>
+      <div>
+
+        <Link className={style.expenseCategoryListLink} to={'/add-category'}>
+          Ver tudo
+        </Link>
+      </div>
     </div>
   )
 }

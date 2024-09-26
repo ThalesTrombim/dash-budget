@@ -9,6 +9,7 @@ import Chart from "react-google-charts";
 import PieChart from "../../components/PieChart";
 import LineChart from "../../components/LineChart";
 import ExpenseCategoryList from "../../components/ExpenseCategoryList";
+import ColumnChart from "../../components/charts/ColumnChart";
 
 function Home() {
   const [ expenses, setExpenses] = useState([]);
@@ -95,7 +96,7 @@ async function getExpenses() {
         <div className={style.area2}><PieChart /></div>
         <div className={style.area3}> <ExpenseCategoryList /> </div>
         <div className={style.area4}>4</div>
-        <div className={style.area5}>5</div>
+        <div className={style.area5}> <ColumnChart /> </div>
       </div>
     </div>
   )

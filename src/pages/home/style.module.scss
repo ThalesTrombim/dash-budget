@@ -56,7 +56,10 @@
     }
     .area5 {
       grid-area: advert;
-      background-color: thistle;
+
+      border-radius: 1rem;
+      border: 1px solid #eaebef;
+      padding: .5rem;
     }
   }
 }
