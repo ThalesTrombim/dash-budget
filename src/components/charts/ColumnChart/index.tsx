@@ -2,15 +2,26 @@ import Chart from "react-google-charts";
 
 import style from './style.module.scss';
 
-function ColumnChart() {
+function ColumnChart({ data, categories }: any) {
 
-  const data = [
-    ["Element", "Density", { role: "style" }],
-    ["Copper", 8.94, "#b87333"], // RGB value
-    ["Silver", 10.49, "silver"], // English color name
-    ["Gold", 19.3, "gold"],
-    ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
-  ];
+  const totalPorCategoria = categories.map((categoria: any) => {
+    const total = data
+      .filter((produto: any) => produto.category === categoria.categoryId)
+      .reduce((acc: any, produto: any) => acc + produto.amount, 0);
+    
+    return { categoria: categoria.name, total, color: categoria.color };
+  });
+
+  const insideData = () => {
+    const data: any = [];
+    data.push(["Element", "Gasto", { role: "style" }]);
+    
+    totalPorCategoria.map((category: any) => {
+      data.push([category.categoria, category.total, category.color])
+    })
+
+    return data;
+  }
 
   return (
     <div className={style.columnChartContainer}>
@@ -18,7 +29,7 @@ function ColumnChart() {
         chartType="ColumnChart"
         width="100%"
         height="100%"
-        data={data}
+        data={insideData()}
       />
     </div>
   )

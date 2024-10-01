@@ -94,9 +94,8 @@ async function getExpenses() {
       <div className={style.dashboardContent}>
         <div className={style.area1}><LineChart /></div>
         <div className={style.area2}><PieChart /></div>
-        <div className={style.area3}> <ExpenseCategoryList /> </div>
-        <div className={style.area4}>4</div>
-        <div className={style.area5}> <ColumnChart /> </div>
+        <div className={style.area3}> <ColumnChart data={expenses} categories={categories} /> </div>
+        <div className={style.area5}> <ExpenseCategoryList /></div>
       </div>
     </div>
   )

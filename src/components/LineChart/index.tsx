@@ -1,29 +1,33 @@
-import React from 'react'
 import Chart from 'react-google-charts'
 
 function LineChart() {
 
   const data = [
-    ["x", "dogs", "cats"],
-    [0, 0, 0],
-    [1, 10, 5],
-    [2, 23, 15],
-    [3, 17, 9],
-    [4, 18, 10],
-    [5, 9, 5],
-    [6, 11, 3],
-    [7, 50, 19],
+    ["x", "Gasto"],
+    ["janeiro", 0],
+    ["fevereiro", 1000],
+    // [2, 0],
+    // [3, 0],
+    // [4, 0],
+    // [5, 0],
+    // [6, 0],
+    // [7, 0],
+    // [8, 0],
+    // [9, 0],
+    // [10, 0],
+    // [11, 0],
+    // [12, 0],
   ];
   
   const options = {
     hAxis: {
-      title: "Time",
+      title: "Mesês",
     },
     vAxis: {
-      title: "Popularity",
+      title: "Valor",
     },
     series: {
-      1: { curveType: "function" },
+      // 1: { curveType: "function" },
       0: { curveType: "function" }
     },
   };

@@ -22,7 +22,7 @@
 
     grid-template-areas:
       "logo logo nav"
-      "sidenav content advert"
+      "content content advert"
     ;
 
     grid-template-columns: 1fr 1fr 1fr;
@@ -44,16 +44,16 @@
       padding: .5rem;
     }
     .area3 {
-      grid-area: sidenav;
+      grid-area: content;
       
       border-radius: 1rem;
       border: 1px solid #eaebef;
       padding: .5rem;
     }
-    .area4 {
-      grid-area: content;
-      background-color: yellow;
-    }
+    // .area4 {
+    //   grid-area: content;
+    //   background-color: yellow;
+    // }
     .area5 {
       grid-area: advert;
 
