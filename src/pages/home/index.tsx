@@ -10,34 +10,13 @@ import PieChart from "../../components/PieChart";
 import LineChart from "../../components/LineChart";
 import ExpenseCategoryList from "../../components/ExpenseCategoryList";
 import ColumnChart from "../../components/charts/ColumnChart";
+import { useCategory } from "../../hooks/useCategories";
 
 function Home() {
-  const [ expenses, setExpenses] = useState([]);
-  const [ categories, setCategories] = useState([]);
+  const { categories } = useCategory();
 
-  const expensesCategory = [
-    {
-      categoryId: 1,
-      color: "#ED820E",
-      icon: "BiSolidCabinet",
-      name: "Marcenaria",
-      total: 280.2
-    },
-    {
-      categoryId: 1,
-      color: "#ED820E",
-      icon: "BiSolidCabinet",
-      name: "Iluminacao",
-      total: 282
-    },
-    {
-      categoryId: 5,
-      color: "#ED820E",
-      icon: "BiSolidCabinet",
-      name: "Revestimento",
-      total: 28
-    }
-]
+  const [ expenses, setExpenses] = useState([]);
+  // const [ categories, setCategories] = useState([]);
 
 async function getExpenses() {
   const querySnapshot = await getDocs(collection(db, "expenses"));
@@ -51,18 +30,6 @@ async function getExpenses() {
   return data;
 }
 
-  async function getCategories() {
-    const querySnapshot = await getDocs(collection(db, "categories"));
-    const data:any = [];
-
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      data.push({...doc.data()});
-    });
-
-    return data;
-  }
-
   useEffect(() => {
     async function getExpensesFirestore() {
       const data = await getExpenses();
@@ -70,12 +37,6 @@ async function getExpenses() {
     }
     getExpensesFirestore();
     
-    async function getCategoriesFirestore() {
-      const data = await getCategories();
-      setCategories(data);
-    }
-    getCategoriesFirestore();
-
   }, [])
 
 
@@ -94,7 +55,7 @@ async function getExpenses() {
       <div className={style.dashboardContent}>
         <div className={style.area1}><LineChart /></div>
         <div className={style.area2}><PieChart /></div>
-        <div className={style.area3}> <ColumnChart data={expenses} categories={categories} /> </div>
+        <div className={style.area3}> <ColumnChart expenses={expenses} categories={categories} /> </div>
         <div className={style.area5}> <ExpenseCategoryList /></div>
       </div>
     </div>
