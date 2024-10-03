@@ -52,12 +52,6 @@ function AddExpense({ data }: {data: any}) {
   function handleSubmit(e:any) {
     e.preventDefault();
 
-    console.log(expenseName);
-    console.log(expenseAmount);
-    console.log(expenseCategory);
-    console.log(expenseDateToday);
-    console.log(expenseDate);
-
     handleAddItem();
   }
 

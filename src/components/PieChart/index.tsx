@@ -1,8 +1,11 @@
 import Chart from "react-google-charts";
 
 import style from './style.module.scss';
+import { useCategory } from "../../hooks/useCategories";
 
 function PieChart() {
+  const { categoriesByAmount } = useCategory();
+
   const data = [
     ["Task", "Hours per Day"],
     ["Work", 11],
@@ -28,7 +31,7 @@ function PieChart() {
         chartType="PieChart"
         width={"100%"}
         height={"100%"}
-        data={data}
+        data={categoriesByAmount}
         options={options}
       />
     </div>

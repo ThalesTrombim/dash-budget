@@ -41,15 +41,15 @@ export const useCategory = () => {
 
   useEffect(() => {
     const data: any = [];
-    data.push(["Element", "Gasto", { role: "style" }]);
+    data.push(["Elemento", "Gasto", { role: "style" }]);
     
     totalByCategory.map((category: any) => {
       data.push([category.categoria, category.total, category.color])
     })
-
+    
     setCategoriesByAmount(data);
   
-  }, [expenses])
+  }, [expenses, categories])
 
   return {
     categories,

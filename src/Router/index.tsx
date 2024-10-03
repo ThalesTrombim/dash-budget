@@ -4,6 +4,7 @@ import AddExpense from '../components/AddExpense';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import Home from '../pages/home';
+import AddCategory from '../components/AddCategory';
 
 async function getCategories() {
   const querySnapshot = await getDocs(collection(db, "categories"));
@@ -33,6 +34,7 @@ function Router() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/add-expense' element={<AddExpense data={categories}/>} />
+      <Route path='/add-category' element={<AddCategory />} />
     </Routes>
   )
 }

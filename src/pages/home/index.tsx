@@ -13,7 +13,7 @@ import ColumnChart from "../../components/charts/ColumnChart";
 import { useCategory } from "../../hooks/useCategories";
 
 function Home() {
-  const { categories } = useCategory();
+  // const { categories } = useCategory();
 
   const [ expenses, setExpenses] = useState([]);
   // const [ categories, setCategories] = useState([]);
@@ -55,7 +55,7 @@ async function getExpenses() {
       <div className={style.dashboardContent}>
         <div className={style.area1}><LineChart /></div>
         <div className={style.area2}><PieChart /></div>
-        <div className={style.area3}> <ColumnChart expenses={expenses} categories={categories} /> </div>
+        <div className={style.area3}> <ColumnChart expenses={expenses} /> </div>
         <div className={style.area5}> <ExpenseCategoryList /></div>
       </div>
     </div>
