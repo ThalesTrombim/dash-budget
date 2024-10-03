@@ -1,0 +1,21 @@
+.iconListContainer {
+  display: flex;
+  gap: .25rem;
+}
+
+.iconBoxContainer {
+  background-color: #CAC4CE;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: .5rem;
+
+  border-radius: .2rem;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(95%);
+  }
+}

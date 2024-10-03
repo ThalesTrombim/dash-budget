@@ -4,11 +4,33 @@ import { useState } from 'react';
 import { db } from '../../firebase.config';
 import { addDoc, collection } from 'firebase/firestore';
 
+import { GiBrickWall } from "react-icons/gi";
+
+
 import style from './style.module.scss';
+import IconsList from './components/IconsList';
 
 function AddCategory() {
   const [categoryName, setCategoryName] = useState<string>('');
   const [expenseIcon, setExpenseIcon] = useState<string>('');
+
+
+  const icons = [
+    'GiBrickWall',
+    'GiPorcelainVase',
+    'GiSofa',
+    'GiWindow',
+    'MdOutlineSensorDoor',
+    'MdBlender',
+    'MdOutlineFormatPaint',
+    'MdTableBar',
+    'TbPlant',
+    'LuLampCeiling',
+    'FiTv',
+    'PiDesktopTowerLight',
+    'FaFaucet',
+    'FaSink'
+  ]
 
   const newExpense = {
     name: categoryName,
@@ -55,6 +77,18 @@ function AddCategory() {
                 value={categoryName} 
                 onChange={(e) => setCategoryName(e.target.value)}
               />
+            </div>
+
+            <div>
+              {/* {
+                icons.map((icon: string) => (
+                  <div>
+                    <p>{icon}</p>
+                  </div>
+                ))
+              } */}
+
+              <IconsList />
             </div>
 
             <button className={style.addCategorySubmitButton} type="submit">Adicionar</button>
