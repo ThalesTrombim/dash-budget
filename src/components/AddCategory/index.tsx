@@ -79,14 +79,10 @@ function AddCategory() {
               />
             </div>
 
-            <div>
-              {/* {
-                icons.map((icon: string) => (
-                  <div>
-                    <p>{icon}</p>
-                  </div>
-                ))
-              } */}
+            <div className={style.addCategoryIcon}>
+              <div className={style.addCategoryIconText}>
+                <p>Icone</p>
+              </div>
 
               <IconsList />
             </div>

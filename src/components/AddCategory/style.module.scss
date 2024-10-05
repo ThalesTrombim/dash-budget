@@ -94,4 +94,17 @@
   padding: .5rem 2rem;
 
   border-radius: .5rem;
+  cursor: pointer;
+}
+
+
+.addCategoryIcon {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  &Text {
+    min-width: 74px!important;
+    text-align: left;
+  }
 }
