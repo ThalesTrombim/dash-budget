@@ -1,0 +1,25 @@
+.colorListContainer {
+  display: flex;
+  gap: .5rem;
+  max-width: 75%;
+  flex-wrap: wrap;
+}
+
+.colorBoxContainer {
+  // background-color: #CAC4CE!important;
+  height: 40px;
+  width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: .5rem;
+
+  border-radius: .2rem;
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(95%);
+  }
+}

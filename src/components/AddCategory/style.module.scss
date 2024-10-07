@@ -98,10 +98,12 @@
 }
 
 
-.addCategoryIcon {
+.addCategoryIcon,
+.addCategoryColor {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  margin-bottom: 1rem;
 
   &Text {
     min-width: 74px!important;

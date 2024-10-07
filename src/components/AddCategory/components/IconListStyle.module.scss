@@ -23,7 +23,8 @@
 }
 
 .iconActive {
-  background-color: red;
+  background-color: #CAC4CE!important;
+  filter: brightness(80%);
 
   display: flex;
   align-items: center;
