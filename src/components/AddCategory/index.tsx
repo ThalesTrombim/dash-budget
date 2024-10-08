@@ -10,20 +10,23 @@ import ColorList from './components/ColorList';
 
 function AddCategory() {
   const [categoryName, setCategoryName] = useState<string>('');
-  const [expenseIcon, setExpenseIcon] = useState<string>('');
+  const [categoryIcon, setCategoryIcon] = useState<string>('');
+  const [categoryColor, setCategoryColor] = useState<string>('');
 
-  const newExpense = {
+  const newCategory = {
     name: categoryName,
-    icon: expenseIcon,
+    icon: categoryIcon,
+    color: categoryColor
   }
 
   async function handleAddItem() {
-    const { name, icon } = newExpense;
+    const { name, icon, color } = newCategory;
     const expenseCollection = collection(db, 'categories');
   
     await addDoc(expenseCollection, {
       name,
-      icon
+      icon,
+      color
     })
 
     resetStates();
@@ -31,13 +34,22 @@ function AddCategory() {
 
   function resetStates() {
     setCategoryName('');
-    setExpenseIcon('')
+    setCategoryIcon('');
+    setCategoryColor('');
   }
 
   function handleSubmit(e:any) {
     e.preventDefault();
 
     handleAddItem();
+  }
+
+  function handleSelectedIcon(icon: string) {
+    setCategoryIcon(icon);
+  }
+
+  function handleSelectedColor(color: string) {
+    setCategoryColor(color);
   }
 
   return (
@@ -64,7 +76,7 @@ function AddCategory() {
                 <p>Icone</p>
               </div>
 
-              <IconsList />
+              <IconsList sendSelectedIcon={handleSelectedIcon} />
             </div>
 
             <div className={style.addCategoryColor}>
@@ -72,7 +84,7 @@ function AddCategory() {
                 <p>Cor</p>
               </div>
 
-              <ColorList />
+              <ColorList sendSelectedColor={handleSelectedColor} />
             </div>
 
             <button className={style.addCategorySubmitButton} type="submit">Adicionar</button>

@@ -88,7 +88,7 @@ function AddExpense({ data }: {data: any}) {
               <label htmlFor="item_category">Categoria</label>
               <select onChange={(e) => setExpenseCategory(parseFloat(e.target.value))} name="item_category" id="item_category">
                 {data.map((category: any) => (
-                  <option value={category.categoryId}>{category.name}</option>
+                  <option value={category.name}>{category.name}</option>
                 ))}
               </select>
             </div>

@@ -96,14 +96,16 @@ const iconsList = [
   },
 ]
 
+interface IProps {
+  sendSelectedIcon: (icon: string) => void;
+}
 
-function IconsList() {
+function IconsList({ sendSelectedIcon }: IProps) {
   const [selectedIcon, setSelectedIcon] = useState<any>('');
 
   function handleSelectIcon(icon: string) {
-    // console.log('Icon name', icon)
-
     setSelectedIcon(icon);
+    sendSelectedIcon(icon);
   }
 
   return (

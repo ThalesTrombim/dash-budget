@@ -33,22 +33,12 @@ async function getExpenses() {
   }, [])
 
 
-  const totalAmount = (id: any) => {
-    const expenseCategory = expenses.filter((item: any) => item.category === id)
-    let amount = 0;
-    expenseCategory.forEach((item: any) => {
-      amount = amount+item.amount
-    })
-
-    return amount;
-  }
-
   return (
     <div className={style.dashboardContainer}>
       <div className={style.dashboardContent}>
         <div className={style.area1}><LineChart /></div>
         <div className={style.area2}><PieChart /></div>
-        <div className={style.area3}> <ColumnChart expenses={expenses} /> </div>
+        <div className={style.area3}> <ColumnChart /> </div>
         <div className={style.area5}> <ExpenseCategoryList /></div>
       </div>
     </div>

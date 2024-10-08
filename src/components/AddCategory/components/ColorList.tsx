@@ -3,11 +3,17 @@ import style from './colorListStyle.module.scss';
 
 import { FaCheck } from "react-icons/fa";
 
-function ColorList() {
+interface IProps {
+  sendSelectedColor: (color: string) => void;
+}
+
+function ColorList({ sendSelectedColor }: IProps) {
   const [selectedColor, setSelectedColor] = useState<string>('');
 
   function handleSelectIcon(color: string) {
     setSelectedColor(color);
+
+    sendSelectedColor(color);
   }
 
   const colorList = [

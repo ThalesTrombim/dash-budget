@@ -33,7 +33,7 @@ export const useCategory = () => {
 
   const totalByCategory = categories.map((categoria: any) => {
     const total = expenses
-      .filter((produto: any) => produto.category === categoria.categoryId)
+      .filter((produto: any) => produto.category === categoria.name)
       .reduce((acc: any, produto: any) => acc + produto.amount, 0);
     
     return { categoria: categoria.name, total, color: categoria.color };
