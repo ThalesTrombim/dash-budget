@@ -1,12 +1,14 @@
-import { MdOutlineKitchen } from "react-icons/md";
-import { PiPottedPlantBold } from "react-icons/pi";
+import { CiImageOff } from "react-icons/ci";
 import { BiSolidCabinet } from "react-icons/bi";
-import { MdOutlineFormatPaint } from "react-icons/md";
+import { GiBrickWall, GiPorcelainVase, GiSofa, GiWindow } from "react-icons/gi";
+import { MdOutlineSensorDoor, MdBlender, MdOutlineFormatPaint, MdTableBar, MdOutlineKitchen, MdOutlineCountertops } from "react-icons/md";
+import { FaFaucet, FaSink } from "react-icons/fa";
+import { TbPlant } from "react-icons/tb";
 import { LuLampCeiling } from "react-icons/lu";
-import { GiBrickWall } from "react-icons/gi";
+import { FiTv } from "react-icons/fi"
+import { PiDesktopTowerLight, PiPottedPlantBold } from "react-icons/pi"
 
 import style from "./style.module.scss";
-import ExpenseItem from "../ExpenseItem";
 
 interface IProps {
   name: string
@@ -14,33 +16,40 @@ interface IProps {
   icon?: string
 }
 
+const iconsList: any = {
+  MdOutlineKitchen,
+  PiPottedPlantBold,
+  BiSolidCabinet,
+  MdOutlineFormatPaint,
+  LuLampCeiling,
+  GiBrickWall,
+  GiPorcelainVase,
+  GiSofa,
+  GiWindow,
+  MdOutlineSensorDoor,
+  MdBlender,
+  MdTableBar,
+  FaFaucet,
+  FaSink,
+  TbPlant,
+  FiTv,
+  PiDesktopTowerLight,
+  MdOutlineCountertops
+}
+
 function DynamicComponent({icon}: {icon: string}) {
+
+  const componentSelected = (name: string) => {
+    const ComponentIcon =  iconsList[name];
+
+    if(ComponentIcon) return <ComponentIcon size={24} color="#FFF" />
+
+    return <CiImageOff size={24} color="#FFF"/>
+  }
+
   return (
     <>
-      {
-        icon === 'PiPottedPlantBold' &&
-        <PiPottedPlantBold size={24} color="#fff"/>
-      }
-      {
-        icon === 'BiSolidCabinet' &&
-        <BiSolidCabinet size={24} color="#fff"/>
-      }
-      {
-        icon === 'MdOutlineKitchen' &&
-        <MdOutlineKitchen size={24} color="#fff"/>
-      }
-      {
-        icon === 'MdOutlineFormatPaint' &&
-        <MdOutlineFormatPaint size={24} color="#fff"/>
-      }
-      {
-        icon === 'LuLampCeiling' &&
-        <LuLampCeiling size={24} color="#fff"/>
-      }
-      {
-        icon === 'GiBrickWall' &&
-        <GiBrickWall size={24} color="#fff"/>
-      }
+      {componentSelected(icon)}
     </>
   )
 }
