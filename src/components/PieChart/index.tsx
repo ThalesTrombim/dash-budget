@@ -19,9 +19,6 @@ function PieChart() {
     title: "Expenses by category",
     pieHole: 0.4,
     is3D: false,
-
-    // allowHtml: true,
-    // backgroundColor: 'blue'
   };
 
   return (

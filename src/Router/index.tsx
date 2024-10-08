@@ -11,7 +11,6 @@ async function getCategories() {
   const data:any = [];
 
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
     data.push({...doc.data()});
   });
 

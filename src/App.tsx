@@ -1,16 +1,11 @@
 import './App.css';
-// import AddExpense from './components/AddExpense';
-// import ExpenseCategory from './components/ExpenseCategory';
-import Expenses from './pages/Expenses';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from './firebase.config';
 import { useEffect, useState } from 'react';
-import AddExpense from './components/AddExpense';
 import { SuccessModalProvider } from './contexts/SuccessModalContext';
 
 import Router from './Router';
 
-import Home from './pages/home';
 import SideMenu from './components/SideMenu';
 
 import './App.css'

@@ -1,22 +1,15 @@
 import { collection, getDocs } from "firebase/firestore";
-import CategoryIcon from "../../components/CategoryIcon"
-import { convertNumberToBRL } from "../../utils/monetary";
 
 import style from './style.module.scss';
 import { db } from "../../firebase.config";
 import { useEffect, useState } from "react";
-import Chart from "react-google-charts";
 import PieChart from "../../components/PieChart";
 import LineChart from "../../components/LineChart";
 import ExpenseCategoryList from "../../components/ExpenseCategoryList";
 import ColumnChart from "../../components/charts/ColumnChart";
-import { useCategory } from "../../hooks/useCategories";
 
 function Home() {
-  // const { categories } = useCategory();
-
-  const [ expenses, setExpenses] = useState([]);
-  // const [ categories, setCategories] = useState([]);
+const [ expenses, setExpenses] = useState([]);
 
 async function getExpenses() {
   const querySnapshot = await getDocs(collection(db, "expenses"));
