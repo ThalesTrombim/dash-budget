@@ -11,7 +11,7 @@ function AddExpense({ data }: {data: any}) {
 
   const [expenseName, setExpenseName] = useState<string>('');
   const [expenseAmount, setExpenseAmount] = useState<number | string>(0);
-  const [expenseCategory, setExpenseCategory] = useState<number | null>();
+  const [expenseCategory, setExpenseCategory] = useState<string>('');
   const [expenseDateToday, setExpenseDateToday] = useState<boolean>(false);
   const [expenseDate, setExpenseDate] = useState<Date | null>();
 
@@ -44,7 +44,7 @@ function AddExpense({ data }: {data: any}) {
   function resetStates() {
     setExpenseName('');
     setExpenseAmount(0);
-    setExpenseCategory(null);
+    setExpenseCategory('');
     setExpenseDateToday(false);
     setExpenseDate(null);
   }
@@ -86,9 +86,9 @@ function AddExpense({ data }: {data: any}) {
 
             <div className={style.addExpenseInput}>
               <label htmlFor="item_category">Categoria</label>
-              <select onChange={(e) => setExpenseCategory(parseFloat(e.target.value))} name="item_category" id="item_category">
+              <select onChange={(e) => setExpenseCategory(e.target.value)} name="item_category" id="item_category">
                 {data.map((category: any) => (
-                  <option value={category.name}>{category.name}</option>
+                  <option key={category.name} value={category.name}>{category.name}</option>
                 ))}
               </select>
             </div>
