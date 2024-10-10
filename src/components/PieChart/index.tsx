@@ -4,21 +4,25 @@ import style from './style.module.scss';
 import { useCategory } from "../../hooks/useCategories";
 
 function PieChart() {
-  const { categoriesByAmount } = useCategory();
+  const { colorsOnly, categoriesByAmount } = useCategory();
 
-  const data = [
-    ["Task", "Hours per Day"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7], // CSS-style declaration
-  ];
-  
   const options = {
-    title: "Expenses by category",
-    pieHole: 0.4,
+    title: "Gastos por categoria",
+    pieHole: 0.3,
     is3D: false,
+    colors: colorsOnly,
+    titleTextStyle: {
+      fontSize: 20
+    },
+    legend: {
+      position: 'bottom'
+    },
+    scrollArrows: false,
+    maxLines: 5,
+    chartArea:{
+      left: 16,
+      right: 16,
+    }
   };
 
   return (

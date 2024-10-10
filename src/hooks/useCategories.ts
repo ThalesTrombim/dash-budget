@@ -6,6 +6,7 @@ import { useExpenses } from "./useExpenses";
 export const useCategory = () => {
   const [categories, setCategories] = useState<any>([]);
   const [categoriesByAmount, setCategoriesByAmount] = useState<any>();
+  const [colorsOnly, setColorsOnly] = useState<any>([]);
 
   const { expenses } = useExpenses();
 
@@ -47,12 +48,16 @@ export const useCategory = () => {
       data.push([category.categoria, category.total, category.color])
     })
     
+    const colors = data.slice(1).map((item: any) => item[2]);
+
+    setColorsOnly(colors);
     setCategoriesByAmount(data);
   
   }, [expenses, categories])
 
   return {
     categories,
+    colorsOnly,
     categoriesByAmount
   }
 
