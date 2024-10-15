@@ -4,9 +4,9 @@ import style from './style.module.scss';
 import { db } from "../../firebase.config";
 import { useEffect, useState } from "react";
 import PieChart from "../../components/PieChart";
-import LineChart from "../../components/LineChart";
 import ExpenseCategoryList from "../../components/ExpenseCategoryList";
 import ColumnChart from "../../components/charts/ColumnChart";
+import LineChartComponent from "../../components/LineChart";
 
 function Home() {
 const [ expenses, setExpenses] = useState([]);
@@ -36,7 +36,7 @@ async function getExpenses() {
   return (
     <div className={style.dashboardContainer}>
       <div className={style.dashboardContent}>
-        <div className={style.area1}><LineChart /></div>
+        <div className={style.area1}><LineChartComponent /></div>
         <div className={style.area2}><PieChart /></div>
         <div className={style.area3}> <ColumnChart /> </div>
         <div className={style.area5}> <ExpenseCategoryList /></div>
