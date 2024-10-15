@@ -1,4 +1,3 @@
-import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -46,10 +45,9 @@ const data = [
   },
 ];
 
-export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/p/sandbox/line-chart-width-xaxis-padding-8v7952';
+function LineChartComponent() {
 
-  render() {
+  // render() {
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
@@ -74,5 +72,7 @@ export default class Example extends PureComponent {
         </LineChart>
       </ResponsiveContainer>
     );
-  }
+  // }
 }
+
+export default LineChartComponent;
