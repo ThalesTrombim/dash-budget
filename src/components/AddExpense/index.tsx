@@ -6,6 +6,8 @@ import { db } from "../../firebase.config";
 
 import { CurrencyInput } from 'react-currency-mask';
 
+import { format, parseISO } from 'date-fns';
+
 function AddExpense({ data }: {data: any}) {
   // const [newExpense, setNewExpense] = useState<any>();
 
@@ -13,11 +15,10 @@ function AddExpense({ data }: {data: any}) {
   const [expenseAmount, setExpenseAmount] = useState<number | string>(0);
   const [expenseCategory, setExpenseCategory] = useState<string>('');
   const [expenseDateToday, setExpenseDateToday] = useState<boolean>(false);
-  const [expenseDate, setExpenseDate] = useState<Date | null>();
+  const [expenseDate, setExpenseDate] = useState<any | null>();
 
-  const expenseDateFormated = (date?: Date) => {
-    if(expenseDateToday) return new Date().getTime();
-    if(date) return date.getTime();
+  const expenseDateFormated = (date?: any) => {
+    return format(parseISO(date), "dd-MM-yyyy");
   };
 
   const newExpense = {
@@ -99,7 +100,7 @@ function AddExpense({ data }: {data: any}) {
                 type="date"
                 name="item_date" 
                 id="item_date"
-                onChange={(e) => setExpenseDate(new Date(e.target.value))}
+                onChange={(e) => setExpenseDate(e.target.value)}
               />
             </div>
 
