@@ -7,6 +7,7 @@ export const useCategory = () => {
   const [categories, setCategories] = useState<any>([]);
   const [categoriesByAmount, setCategoriesByAmount] = useState<any>();
   const [colorsOnly, setColorsOnly] = useState<any>([]);
+  const [expensesByCategory, setExpensesByCategory] = useState<any>([]);
 
   const { expenses } = useExpenses();
 
@@ -83,10 +84,22 @@ export const useCategory = () => {
   
   }, [expenses, categories])
 
+
+  useEffect(() => {
+    const data: any = [];
+    
+    totalByCategory.map((category: any) => {
+      data.push({name: category.categoria, totalAmount: category.total, fill: category.color})
+    })
+    
+    setExpensesByCategory(data);
+  }, [expenses, categories])
+
   return {
     categories,
     colorsOnly,
     categoriesByAmount,
+    expensesByCategory,
     groupAndSumByMonthAndYear
   }
 
