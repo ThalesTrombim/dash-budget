@@ -1,7 +1,7 @@
 import { CiImageOff } from "react-icons/ci";
 import { BiSolidCabinet } from "react-icons/bi";
-import { GiBrickWall, GiPorcelainVase, GiSofa, GiWindow } from "react-icons/gi";
-import { MdFormatListBulletedAdd, MdAddchart, MdOutlineSensorDoor, MdBlender, MdOutlineFormatPaint, MdTableBar, MdOutlineKitchen, MdOutlineCountertops, MdSpaceDashboard } from "react-icons/md";
+import { GiPayMoney, GiBrickWall, GiPorcelainVase, GiSofa, GiWindow } from "react-icons/gi";
+import { MdToday, MdCalendarMonth, MdFormatListBulletedAdd, MdAddchart, MdOutlineSensorDoor, MdBlender, MdOutlineFormatPaint, MdTableBar, MdOutlineKitchen, MdOutlineCountertops, MdSpaceDashboard } from "react-icons/md";
 import { FaChartArea, FaFaucet, FaSink } from "react-icons/fa";
 import { TbPlant } from "react-icons/tb";
 import { LuLampCeiling } from "react-icons/lu";
@@ -13,6 +13,8 @@ const iconsList: any = {
   PiPottedPlantBold,
   BiSolidCabinet,
   FaChartArea,
+  MdCalendarMonth,
+  MdToday,
   MdFormatListBulletedAdd,
   MdAddchart,
   MdOutlineFormatPaint,
@@ -22,6 +24,7 @@ const iconsList: any = {
   GiPorcelainVase,
   GiSofa,
   GiWindow,
+  GiPayMoney,
   MdOutlineSensorDoor,
   MdBlender,
   MdTableBar,

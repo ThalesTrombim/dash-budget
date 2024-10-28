@@ -7,6 +7,8 @@ import PieChart from "../../components/PieChart";
 import ExpenseCategoryList from "../../components/ExpenseCategoryList";
 import ColumnChart from "../../components/charts/ColumnChart";
 import LineChartComponent from "../../components/LineChart";
+import TotalCard from "../../components/TotalCard";
+import TotalsArea from "../../components/TotalsArea";
 
 function Home() {
 const [ expenses, setExpenses] = useState([]);
@@ -34,13 +36,17 @@ async function getExpenses() {
 
 
   return (
-    <div className={style.dashboardContainer}>
-      <div className={style.dashboardContent}>
-        <div className={style.area1}><LineChartComponent /></div>
-        <div className={style.area2}><PieChart /></div>
-        <div className={style.area3}> <ColumnChart /> </div>
-        <div className={style.area5}> <ExpenseCategoryList /></div>
-      </div>
+    // <div className={style.dashboardContainer}>
+    //   <div className={style.dashboardContent}>
+    //     <div className={style.area1}><LineChartComponent /></div>
+    //     <div className={style.area2}><PieChart /></div>
+    //     <div className={style.area3}> <ColumnChart /> </div>
+    //     <div className={style.area5}> <ExpenseCategoryList /></div>
+    //   </div>
+    // </div>
+
+    <div className="p-6">
+      <TotalsArea />
     </div>
   )
 }
