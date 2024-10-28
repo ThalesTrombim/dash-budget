@@ -10,7 +10,7 @@ function SideMenu() {
 
   const menuItems = [
     {
-      name: 'Home',
+      name: 'Dashboard',
       icon: 'MdSpaceDashboard',
       path: '/',
       active: true
