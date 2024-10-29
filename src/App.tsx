@@ -38,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <SuccessModalProvider>
-        <div className='app-container' >
+        <div className='flex w-full h-dvh bg-[#f7f7f7]' >
           <SideMenu />
           <Router />
         </div>
