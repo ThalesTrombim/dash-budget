@@ -47,6 +47,9 @@ async function getExpenses() {
 
     <div className="p-6">
       <TotalsArea />
+      <div className="mt-8">
+        <LineChartComponent />
+      </div>
     </div>
   )
 }
