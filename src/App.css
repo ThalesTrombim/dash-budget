@@ -1,6 +1,7 @@
 #root {
   margin: 0 auto;
   text-align: center;
+  color: #252C32;
 }
 
 .logo {
@@ -42,7 +43,6 @@
 
 .app-container {
   display: flex;
-  /* height: 100dvh; */
   height: 100%;
   background-color: #f7f5f5;
 
