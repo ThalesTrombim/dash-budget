@@ -18,14 +18,14 @@ function PieChartComponent() {
   };
 
   return (
-    <div className="flex flex-col w-full max-h-[360px] h-full p-4 bg-white rounded-lg">
+    <div className="flex flex-col w-full max-h-[300px] h-full p-4 bg-white rounded-lg shadow-md">
       <div>
         <div className='text-start text-lg font-bold'>
           <h4>Porcentagem por categorias</h4>
         </div>
       </div>
       
-      <ResponsiveContainer width={"100%"} height={"100%"}>
+      <ResponsiveContainer width={"100%"}>
         <PieChart
           margin={{
             top: 16

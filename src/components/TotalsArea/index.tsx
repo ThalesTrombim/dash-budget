@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useTotals } from '../../hooks/useTotals';
 import TotalCard from '../TotalCard';
 

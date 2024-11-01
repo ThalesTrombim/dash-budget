@@ -45,7 +45,6 @@ function SideMenu() {
   }
 
   useEffect(() => {
-    console.log('testing')
     setMenuList(updateMenuList(location.pathname))
   }, [location.pathname]);
 

@@ -10,7 +10,7 @@ function LineChartComponent() {
   const chartData = Object.values(groupAndSumByMonthAndYear(expenses));
 
   return (
-    <div className='bg-white p-4 rounded-lg'>
+    <div className='bg-white p-4 rounded-lg shadow-md'>
       <div className='py-2 text-start text-xl font-bold'>
         <h3>Gastos por mesês</h3>
       </div>

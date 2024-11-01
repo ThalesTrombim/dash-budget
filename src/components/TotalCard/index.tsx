@@ -2,7 +2,7 @@ import DynamicIcon from "../DynamicIcon";
 
 interface IProps {
   title: string
-  amount: string // ADICIONAR TRATAMENTO DE VALORES EM PORTUGUÊS
+  amount: string
   icon: string
   iconColor?: string
 }
@@ -10,7 +10,7 @@ interface IProps {
 function TotalCard({ title, amount, icon, iconColor = '656CE1' }: IProps) {
 
   return (
-    <div className="p-4 bg-white rounded-lg min-w-[232px] gap-2 flex flex-col">
+    <div className="p-4 bg-white rounded-lg min-w-[210px] gap-2 flex flex-col shadow-md">
       <div className="p-2 bg-[#F0F0F5] flex w-10 rounded-lg">
         <DynamicIcon icon={icon} color={iconColor} />
       </div>

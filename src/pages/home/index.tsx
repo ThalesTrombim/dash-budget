@@ -8,6 +8,7 @@ import ColumnChart from "../../components/charts/ColumnChart";
 import LineChartComponent from "../../components/LineChart";
 import TotalCard from "../../components/TotalCard";
 import TotalsArea from "../../components/TotalsArea";
+import LastExpensesList from "../../components/LastExpensesList";
 
 function Home() {
 const [ expenses, setExpenses] = useState([]);
@@ -51,8 +52,10 @@ async function getExpenses() {
           <LineChartComponent />
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-4">
         <PieChart />
+
+        <LastExpensesList />
       </div>
     </div>
   )
