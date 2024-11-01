@@ -1,6 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
 
-import style from './style.module.scss';
 import { db } from "../../firebase.config";
 import { useEffect, useState } from "react";
 import PieChart from "../../components/PieChart";
@@ -45,10 +44,15 @@ async function getExpenses() {
     //   </div>
     // </div>
 
-    <div className="p-6">
-      <TotalsArea />
-      <div className="mt-8">
-        <LineChartComponent />
+    <div className="p-6 flex w-full gap-4">
+      <div>
+        <TotalsArea />
+        <div className="mt-8">
+          <LineChartComponent />
+        </div>
+      </div>
+      <div className="w-full">
+        <PieChart />
       </div>
     </div>
   )

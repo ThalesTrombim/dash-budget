@@ -51,7 +51,8 @@ function SideMenu() {
 
   return (
     <div className='
-      bg-[#F6F6F9]
+      bg-[#ededf0]
+      max-w-[264px]
       flex flex-col p-4
     '>
       <div className='mb-12'>

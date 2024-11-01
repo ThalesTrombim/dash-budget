@@ -5,10 +5,6 @@ import TotalCard from '../TotalCard';
 function TotalsArea() {
   const { everTotal, currentMonthTotal, lastMonthTotal } = useTotals();
 
-  useEffect(() => {
-    console.log('eeverTotal', everTotal);
-  }, [])
-
   const totalItems = [
     {
       title: 'Total gasto',
@@ -31,7 +27,7 @@ function TotalsArea() {
   
 
   return (
-    <div className='flex gap-6'>
+    <div className='flex gap-4'>
       {
         totalItems.map((item: any) => (
           <TotalCard 
