@@ -1,12 +1,11 @@
 import { useState } from "react";
-import style from "./style.module.scss";
 
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
 import { CurrencyInput } from 'react-currency-mask';
 
-import { format, parseISO } from 'date-fns';
+import { format, isValid, parseISO } from 'date-fns';
 
 function AddExpense({ data }: {data: any}) {
   // const [newExpense, setNewExpense] = useState<any>();
@@ -18,8 +17,12 @@ function AddExpense({ data }: {data: any}) {
   const [expenseDate, setExpenseDate] = useState<any | null>();
 
   const expenseDateFormated = (date?: any) => {
-    return format(parseISO(date), "dd-MM-yyyy");
+    const validDate = isValid(date);
+
+    if(validDate) return format(parseISO(date), "dd-MM-yyyy");
   };
+
+  const today = new Date();
 
   const newExpense = {
     name: expenseName,
@@ -57,65 +60,72 @@ function AddExpense({ data }: {data: any}) {
   }
 
   return (
-    <div className={style.addExpenseContainer}>
-      <div className={style.addExpenseContent}>
+    <div className="flex w-full p-4">
+      <div className="flex bg-white w-full p-4 rounded-lg shadow-md">
+        <div className="flex flex-col p-12">
+          <h3 className="self-start mb-8">Adicionar compra</h3>
 
-        <div className={style.addExpenseFormArea}>
-          <h3>Adicionar compra</h3>
-
-          <form onSubmit={handleSubmit} className={style.addExpenseInputs}>
-            <div className={style.addExpenseInput}>
-              <label htmlFor="item_name">Nome</label>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2 items-start min-w-[350px]">
+              <label htmlFor="item_name" className="text-sm text-[#6B7280]">Nome</label>
               <input 
                 type="text" 
                 name="item_name" 
                 id="item_name" 
                 value={expenseName} 
                 onChange={(e) => setExpenseName(e.target.value)}
+                className="bg-white w-full p-2 rounded-md border border-[#dfe1e8]"
               />
             </div>
 
-            <div className={style.addExpenseInput}>
-              <label htmlFor="item_amount">Valor</label>
+            <div className="flex flex-col gap-2 items-start min-w-[350px]">
+              <label htmlFor="item_amount" className="text-sm text-[#6B7280]">Valor</label>
               <CurrencyInput
                 onChangeValue={(_, originalValue) => {
                   setExpenseAmount(originalValue);
                 }}
                 value={expenseAmount}
+                //@ts-ignore
+                className={"bg-white w-full p-2 rounded-md border border-[#dfe1e8] !important"}
               />
             </div>
 
-            <div className={style.addExpenseInput}>
-              <label htmlFor="item_category">Categoria</label>
-              <select onChange={(e) => setExpenseCategory(e.target.value)} name="item_category" id="item_category">
+            <div className="flex flex-col gap-2 items-start min-w-[350px]">
+              <label htmlFor="item_category" className="text-sm text-[#6B7280]">Categoria</label>
+              <select onChange={(e) => setExpenseCategory(e.target.value)} name="item_category" id="item_category"
+                className="bg-white w-full p-2 rounded-md border border-[#dfe1e8]"
+              >
                 {data.map((category: any) => (
                   <option key={category.name} value={category.name}>{category.name}</option>
                 ))}
               </select>
             </div>
 
-            <div className={style.addExpenseInput}>
-              <label htmlFor="item_date">Data</label>
+            <div className="flex flex-col gap-2 items-start min-w-[350px]">
+              <label htmlFor="item_date" className="text-sm text-[#6B7280]">Data</label>
               <input 
                 type="date"
+                max={today.toString()}
                 name="item_date" 
                 id="item_date"
+                className="bg-white w-full p-2 rounded-md border border-[#dfe1e8]"
                 onChange={(e) => setExpenseDate(e.target.value)}
               />
             </div>
 
-            <div className={style.addExpenseCheckbox}>
+            <div className="flex gap-2">
               <input 
                 type="checkbox"
-                name="item_date_today" 
-                id="item_date_today" 
-                checked={expenseDateToday} 
+                name="item_date_today"
+                id="item_date_today"
+                checked={expenseDateToday}
+                className="bg-white"
                 onChange={(e) => setExpenseDateToday(e.target.checked)}
               />
-              <label htmlFor="item_date_today">Data de Hoje?</label>
+              <label htmlFor="item_date_today" className="select-none cursor-pointer text-sm">Data de hoje</label>
             </div>
 
-            <button className={style.addExpenseSubmitButton} type="submit">Adicionar</button>
+            <button className="bg-[#144bff] rounded-md p-2 text-white" type="submit">Adicionar</button>
           </form>
         </div>
       </div>
