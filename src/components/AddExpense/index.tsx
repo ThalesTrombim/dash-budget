@@ -1,12 +1,11 @@
 import { useState } from "react";
-import style from "./style.module.scss";
 
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
 import { CurrencyInput } from 'react-currency-mask';
 
-import { format, parseISO } from 'date-fns';
+import { format, isValid, parseISO } from 'date-fns';
 
 function AddExpense({ data }: {data: any}) {
   // const [newExpense, setNewExpense] = useState<any>();
@@ -18,10 +17,9 @@ function AddExpense({ data }: {data: any}) {
   const [expenseDate, setExpenseDate] = useState<any | null>();
 
   const expenseDateFormated = (date?: any) => {
-    const validDate = new Date(date);
+    const validDate = isValid(date);
 
-    if(validDate)
-      return format(parseISO(date), "dd-MM-yyyy");
+    if(validDate) return format(parseISO(date), "dd-MM-yyyy");
   };
 
   const today = new Date();
@@ -64,8 +62,8 @@ function AddExpense({ data }: {data: any}) {
   return (
     <div className="flex w-full p-4">
       <div className="flex bg-white w-full p-4 rounded-lg shadow-md">
-        <div className=" p-12">
-          <h3>Adicionar compra</h3>
+        <div className="flex flex-col p-12">
+          <h3 className="self-start mb-8">Adicionar compra</h3>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-2 items-start min-w-[350px]">
@@ -86,8 +84,9 @@ function AddExpense({ data }: {data: any}) {
                 onChangeValue={(_, originalValue) => {
                   setExpenseAmount(originalValue);
                 }}
-                className={"bg-white w-full p-2 rounded-md border border-[#dfe1e8]"}
                 value={expenseAmount}
+                //@ts-ignore
+                className={"bg-white w-full p-2 rounded-md border border-[#dfe1e8] !important"}
               />
             </div>
 
