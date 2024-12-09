@@ -27,12 +27,12 @@ function SideMenu() {
       path: '/add-category',
       active: false
     },
-    {
-      name: 'Gráficos',
-      icon: 'FaChartArea',
-      path: '/graphs',
-      active: false
-    }
+    // {
+    //   name: 'Gráficos',
+    //   icon: 'FaChartArea',
+    //   path: '/graphs',
+    //   active: false
+    // }
   ]
 
   function updateMenuList(currentPath: string) {

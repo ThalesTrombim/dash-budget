@@ -10,12 +10,12 @@ function LineChartComponent() {
   const chartData = Object.values(groupAndSumByMonthAndYear(expenses));
 
   return (
-    <div className='bg-white p-4 rounded-lg shadow-md'>
+    <div className='bg-white p-4 rounded-lg shadow-md h-full'>
       <div className='py-2 text-start text-xl font-bold'>
         <h3>Gastos por mesês</h3>
       </div>
-      <div style={{ height: '400px'}} > 
-        <ResponsiveContainer width={"100%"} height={"100%"}>
+      <div className='h-full'>
+        <ResponsiveContainer width={"100%"} height={"100%"} aspect={2}>
           <AreaChart
             width={500}
             height={400}

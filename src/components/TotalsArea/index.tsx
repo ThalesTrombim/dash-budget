@@ -17,7 +17,7 @@ function TotalsArea() {
       iconColor: '#72DEF6'
     },
     {
-      title: 'Gastos no mês passado',
+      title: 'Gastos último mês',
       amount: lastMonthTotal,
       icon: 'MdCalendarMonth',
       iconColor: '#FFB26A'
