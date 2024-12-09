@@ -3,10 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import { useEffect, useState } from "react";
 import PieChart from "../../components/PieChart";
-import ExpenseCategoryList from "../../components/ExpenseCategoryList";
-import ColumnChart from "../../components/charts/ColumnChart";
 import LineChartComponent from "../../components/LineChart";
-import TotalCard from "../../components/TotalCard";
 import TotalsArea from "../../components/TotalsArea";
 import LastExpensesList from "../../components/LastExpensesList";
 
@@ -36,25 +33,13 @@ async function getExpenses() {
 
 
   return (
-    // <div className={style.dashboardContainer}>
-    //   <div className={style.dashboardContent}>
-    //     <div className={style.area1}><LineChartComponent /></div>
-    //     <div className={style.area2}><PieChart /></div>
-    //     <div className={style.area3}> <ColumnChart /> </div>
-    //     <div className={style.area5}> <ExpenseCategoryList /></div>
-    //   </div>
-    // </div>
-
-    <div className="p-6 flex w-full gap-4">
-      <div>
+    <div className="p-6 flex w-full gap-4 h-full">
+      <div className="flex flex-col gap-4">
         <TotalsArea />
-        <div className="mt-8">
-          <LineChartComponent />
-        </div>
+        <LineChartComponent />
       </div>
       <div className="w-full flex flex-col gap-4">
         <PieChart />
-
         <LastExpensesList />
       </div>
     </div>

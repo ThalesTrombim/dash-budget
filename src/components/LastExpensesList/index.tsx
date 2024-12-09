@@ -5,7 +5,7 @@ function LastExpensesList() {
   const { lastExpenses } = useExpenses();
 
   return (
-    <div className="flex flex-col bg-white rounded-lg p-4 shadow-md">
+    <div className="flex flex-col bg-white rounded-lg p-2 shadow-md h-full">
       <ul className="w-full">
         {
           lastExpenses.map((expense: any, index: number) => (
