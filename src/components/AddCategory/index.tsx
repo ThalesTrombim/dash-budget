@@ -48,10 +48,6 @@ function AddCategory() {
     setCategoryIcon(icon);
   }
 
-  function handleSelectedColor(color: string) {
-    setCategoryColor(color);
-  }
-
   return (
     <div className={style.addCategoryContainer}>
       <div className={style.addCategoryContent}>
@@ -77,14 +73,6 @@ function AddCategory() {
               </div>
 
               <IconsList sendSelectedIcon={handleSelectedIcon} />
-            </div>
-
-            <div className={style.addCategoryColor}>
-              <div className={style.addCategoryColorText}>
-                <p>Cor</p>
-              </div>
-
-              <ColorList sendSelectedColor={handleSelectedColor} />
             </div>
 
             <button className={style.addCategorySubmitButton} type="submit">Adicionar</button>
