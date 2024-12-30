@@ -23,10 +23,9 @@ function TotalsArea() {
       iconColor: '#FFB26A'
     }
   ]
-  
 
   return (
-    <div className='flex gap-4'>
+    <div className='flex flex-col md:flex-row gap-4'>
       {
         totalItems.map((item: any) => (
           <TotalCard 
