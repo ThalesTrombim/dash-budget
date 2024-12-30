@@ -1,14 +1,15 @@
 import { useGoogleLogin } from '../../hooks/useLoginWithGoogle';
 import loginImg from "../../assets/login-img.png";
 import { FaGoogle } from "react-icons/fa";
+import { useAuth } from '../../hooks/useAuth';
 
 function Login() {
-  const { signInWithGoogle } = useGoogleLogin();
-  
-  function handleSubmit(event: any) {
+  const { handleLogin } = useAuth();
+
+  async function handleSubmit(event: any) {
     event?.preventDefault();
 
-    signInWithGoogle();
+    handleLogin();
   }
 
   return (
