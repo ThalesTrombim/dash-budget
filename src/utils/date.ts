@@ -1,4 +1,4 @@
-import { format, parse } from 'date-fns';
+import { format, parse, parseISO } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 
@@ -9,3 +9,8 @@ export function dateToPTBR(dateString: string) {
   return formattedDate;
 }
 
+export function formatDateToPTBR(date: string) {
+  const formattedDate = format(parseISO(date), "dd/MM/yyyy");
+
+  return formattedDate;
+}

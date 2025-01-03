@@ -36,12 +36,12 @@ const iconsList: any = {
   'Marmoraria': MdOutlineCountertops
 }
 
-function DynamicCategoryIcon({ icon, color = "#FFF", size = 24 }: { icon: string, color?: string, size?: number }) {
+function DynamicCategoryIcon({ icon, color = "#FFF", size = 24, className, ...props }: { icon: string, color?: string, size?: number, className?: string }) {
 
   const componentSelected = (name: string) => {
     const ComponentIcon =  iconsList[name];
 
-    if(ComponentIcon) return <ComponentIcon size={size} color={color} />
+    if(ComponentIcon) return <ComponentIcon className={className} size={size} color={color} />
 
     return <CiImageOff size={24} color="#FFF"/>
   }

@@ -17,6 +17,5 @@ export const SuccessModalProvider = ({children}: {children: any}) => {
     <SuccessModalContext.Provider value={{ active, setActive }}>
       {children}
     </SuccessModalContext.Provider>
-
   )
 }
