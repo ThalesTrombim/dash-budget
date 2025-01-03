@@ -64,7 +64,7 @@ function SideMenu() {
 
   return (
     <>
-      <div className='md:hidden fixed bg-[#ededf0] h-full flex flex-col justify-between' onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+      <div className='md:hidden fixed h-screen bg-[#ededf0] flex flex-col justify-between' onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
         <div>
           <p>Logo</p>
 
@@ -100,6 +100,8 @@ function SideMenu() {
         max-w-[264px]
         hidden md:flex flex-col p-4
         justify-between
+        h-screen
+        fixed
       '>
         <div>
           <div className='mb-12'>
