@@ -16,7 +16,7 @@ function App() {
           <SuccessModalProvider>
             <div className='flex w-full bg-[#f7f7f7]'>
               <SideMenu />
-              <div className='flex ml-[56px] md:ml-[264px] md:p-6 w-full'>
+              <div className='flex ml-[56px] md:ml-[264px] md:p-6 w-full h-dvh'>
                 <Router />
               </div>
             </div>

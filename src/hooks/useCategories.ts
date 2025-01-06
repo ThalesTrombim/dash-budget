@@ -44,7 +44,7 @@ export const useCategory = () => {
   const groupAndSumByMonthAndYear = (arr: any) => {
     const grouped = arr.reduce((acc: any, current: any) => {
       // Extrair dia, mês e ano da string de data "DD-MM-YYYY"
-      const [day, month, year] = current.date.split('-');
+      const [day, month, year] = current.date.split('/');
   
       // Criar a chave no formato MM-YYYY
       const key = `${month}-${year}`;

@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase.config";
-
-import { CurrencyInput } from 'react-currency-mask';
 
 import { format, isValid, parseISO } from 'date-fns';
 import { AddExpenseModal } from "../newComponents/AddExpenseModal/AddExpenseModal";
@@ -13,11 +11,10 @@ import { useExpenses } from "../../hooks/useExpenses";
 import ExpenseListItem from "../newComponents/ExpenseListItem";
 import ExpenseListItemMobile from "../newComponents/ExpenseListItemMobile";
 
-function AddExpense({ data }: {data: any}) {
+function AddExpense() {
   const { expenses, deleteExpense } = useExpenses();
 
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState<boolean>(false);
-  const [expensesList, setExpensesList] = useState(expenses);
   
   const [expenseName, setExpenseName] = useState<string>('');
   const [expenseAmount, setExpenseAmount] = useState<number | string>(0);
@@ -31,8 +28,6 @@ function AddExpense({ data }: {data: any}) {
 
     if(validDate) return format(parseISO(date), "dd-MM-yyyy");
   };
-
-  const today = new Date();
 
   const newExpense = {
     name: expenseName,
@@ -62,18 +57,6 @@ function AddExpense({ data }: {data: any}) {
     setExpenseDateToday(false);
     setExpenseDate(null);
   }
-
-  function handleSubmit(e:any) {
-    e.preventDefault();
-
-    handleAddItem();
-  }
-
-  useEffect(() => {
-    console.log('Changing', );
-    setExpensesList(expenses)
-
-  }, [expenses]);
 
   return (
     <>

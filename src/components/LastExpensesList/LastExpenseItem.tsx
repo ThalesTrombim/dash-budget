@@ -1,4 +1,4 @@
-import { dateToPTBR } from '../../utils/date';
+import { dateToPTBR, dateToPTBR2 } from '../../utils/date';
 import { convertNumberToBRL } from '../../utils/monetary';
 import DynamicCategoryIcon from '../DynamicIcon/DynamicCategoryIcon';
 
@@ -20,7 +20,7 @@ function LastExpenseItem({ index, name, date, amount, category }: IProps ) {
 
         <div className="flex flex-col text-start">
           <span className="text-sm text-ellipsis">{ name }</span>
-          <span className="text-xs">{ dateToPTBR(date) }</span>
+          <span className="text-xs">{ dateToPTBR2(date) }</span>
         </div>
       </div>
 

@@ -22,7 +22,7 @@ export const useTotals = () => {
     const currentYear = currentDate.getFullYear();
 
     const expensesCurrentMonth =  expenses.filter((item: any) => {
-      const [day, month, year] = item.date.split("-").map(Number);
+      const [day, month, year] = item.date.split("/").map(Number);
       return month - 1 === currentMonth && year === currentYear;
     });
 
@@ -44,7 +44,7 @@ export const useTotals = () => {
     }
 
     const lastMonthTotal = expenses.filter((item: any) => {
-      const [day, month, year] = item.date.split("-").map(Number);
+      const [day, month, year] = item.date.split("/").map(Number);
       return month - 1 === previousMonth && year === previousYear;
     });
 
