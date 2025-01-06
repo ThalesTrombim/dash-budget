@@ -31,7 +31,6 @@ async function getExpenses() {
     
   }, [])
 
-
   return (
     <div className="p-6 flex flex-col md:flex-row w-full gap-4 h-full ml-12 md:mt-0">
       <div className="flex flex-col gap-4">

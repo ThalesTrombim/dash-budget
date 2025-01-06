@@ -47,16 +47,19 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
         amount: formatedAmount,
         category,
         date: formattedDate,
-        paymentMethod
+        paymentMethod,
+        id: '',
       }
-
-      setExpenses((prevExpenses: any) => [...prevExpenses, newItem])
 
       const docRef = await addDoc(expenseCollection, newItem)
 
       await updateDoc(doc(db, "expenses", docRef.id), {
         id: docRef.id,
       });
+
+      newItem.id = docRef.id;
+
+      setExpenses((prevExpenses: any) => [...prevExpenses, newItem])
 
       callback();
 
