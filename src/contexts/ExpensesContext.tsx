@@ -2,8 +2,6 @@ import { addDoc, collection, deleteDoc, doc, getDocs, limit, orderBy, query, upd
 import { db } from "../firebase.config";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { formatDateToPTBR } from "../utils/date";
-import { Value } from "sass";
-
 
 export const ExpensesContext = createContext<any>({} as any);
 
@@ -24,7 +22,7 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
   }
 
   function parseDate(dateString: string) {
-    const [day, month, year] = dateString.split("-").map(Number);
+    const [day, month, year] = dateString.split("/").map(Number);
     return new Date(year, month - 1, day);
   }
 

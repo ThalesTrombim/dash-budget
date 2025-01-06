@@ -31,7 +31,7 @@ function ExpenseListItem({ name, amount, date, paymentMethod, category, handleDe
       <span className='w-1/5'>{ date }</span>
       <div className='flex w-1/4 items-center justify-between'>
         { paymentMethod && <span>{ treatedPaymentMethod() }</span> }
-        <FaTrashAlt color='6b7280' onClick={handleDeleteExpense} className='cursor-pointer hover:!text-red-600'/>
+        <FaTrashAlt color='6b7280' onClick={handleDeleteExpense} className='cursor-pointer hover:!text-red-600 hover:scale-110'/>
       </div>
     </div>
   )

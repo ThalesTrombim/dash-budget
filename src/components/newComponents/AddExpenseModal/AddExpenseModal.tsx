@@ -51,7 +51,7 @@ function AddExpenseModal({ onClose }: { onClose: () => void; }) {
   return (
     <div className='
       bg-black bg-opacity-30 
-      w-full h-full flex absolute items-center justify-center
+      w-full h-full flex absolute items-center justify-center inset-0
       p-4 md:p-0'
       onClick={onClose}
       style={{ pointerEvents: "all" }}
