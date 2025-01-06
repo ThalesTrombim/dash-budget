@@ -1,67 +1,32 @@
 import { useState } from "react";
-
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase.config";
-
-import { format, isValid, parseISO } from 'date-fns';
 import { AddExpenseModal } from "../newComponents/AddExpenseModal/AddExpenseModal";
 
 import { GoPlus } from "react-icons/go";
 import { useExpenses } from "../../hooks/useExpenses";
 import ExpenseListItem from "../newComponents/ExpenseListItem";
 import ExpenseListItemMobile from "../newComponents/ExpenseListItemMobile";
+import ConfirmationModal from "../newComponents/ConfirmationModal";
 
 function AddExpense() {
   const { expenses, deleteExpense } = useExpenses();
 
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState<boolean>(false);
-  
-  const [expenseName, setExpenseName] = useState<string>('');
-  const [expenseAmount, setExpenseAmount] = useState<number | string>(0);
-  const [expenseCategory, setExpenseCategory] = useState<string>('');
-  const [expenseDateToday, setExpenseDateToday] = useState<boolean>(false);
-  const [expenseDate, setExpenseDate] = useState<any | null>();
-  
+  const [isConfirmationDeleteModalOpen, setIsConfirmationDeleteModalOpen] = useState<boolean>(false);
+  const [selectedExpenseId, setSelectedExpenseId] = useState('');
 
-  const expenseDateFormated = (date?: any) => {
-    const validDate = isValid(date);
-
-    if(validDate) return format(parseISO(date), "dd-MM-yyyy");
-  };
-
-  const newExpense = {
-    name: expenseName,
-    amount: expenseAmount,
-    category: expenseCategory,
-    date: expenseDate ? expenseDateFormated(expenseDate) : '',
-  }
-
-  async function handleAddItem() {
-    const { name, amount, date, category } = newExpense;
-    const expenseCollection = collection(db, 'expenses');
-  
-    await addDoc(expenseCollection, {
-      name,
-      amount,
-      category,
-      date
-    })
-
-    resetStates();
-  }
-
-  function resetStates() {
-    setExpenseName('');
-    setExpenseAmount(0);
-    setExpenseCategory('');
-    setExpenseDateToday(false);
-    setExpenseDate(null);
+  function handleDelete(expenseId: string) {
+    setSelectedExpenseId(expenseId);
+    setIsConfirmationDeleteModalOpen(true);
   }
 
   return (
     <>
       {
         isAddExpenseModalOpen && <AddExpenseModal onClose={() => setIsAddExpenseModalOpen(false)} />
+      }
+
+      {
+        isConfirmationDeleteModalOpen && <ConfirmationModal onClose={() => setIsConfirmationDeleteModalOpen(false)} onConfirm={() => deleteExpense(selectedExpenseId)} />
       }
 
       <div className="flex w-full h-full bg-[#f7f7f7]">
@@ -85,7 +50,6 @@ function AddExpense() {
 
           {/* BODY */}
           <div className="mt-8">
-
             <ul className="flex-col text-start gap-2 hidden md:flex">
               {
                 expenses.map((expense: any) => (
@@ -96,12 +60,13 @@ function AddExpense() {
                     amount={expense.amount} 
                     category={expense.category} 
                     paymentMethod={expense.paymentMethod}
-                    handleDeleteExpense={() => deleteExpense(expense.id)}
+                    handleDeleteExpense={() => handleDelete(expense.id)}
                   />
                 ))
               }
             </ul>
 
+            {/* MOBILE LIST */}
             <ul className="flex-col text-start gap-2 flex md:hidden">
               {
                 expenses.map((expense: any) => (
@@ -111,7 +76,7 @@ function AddExpense() {
                     date={expense.date} 
                     amount={expense.amount}
                     paymentMethod={expense.paymentMethod}
-                    handleDeleteExpense={() => deleteExpense(expense.id)}
+                    handleDeleteExpense={() => handleDelete(expense.id)}
                   />
                 ))
               }
