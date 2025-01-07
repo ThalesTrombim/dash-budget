@@ -4,12 +4,12 @@ function ConfirmationModal({ onClose, onConfirm }: { onClose: () => void, onConf
   return (
     <div className='
       bg-black bg-opacity-30 
-      w-full h-full flex absolute items-center justify-center inset-0
+      w-full h-full flex absolute items-center justify-center inset-0 animate-fadeInBackground
       p-4 md:p-0'
       onClick={onClose}
       style={{ pointerEvents: "all" }}
     >
-      <div className="bg-white p-6 rounded-md">
+      <div className="bg-white p-6 rounded-md animate-fadeInUp">
         <div className="flex gap-2 items-center">
           <MdWarningAmber color="red" size={32} />
           <h3>Tem certeza que deseja excluir esse gasto?</h3>

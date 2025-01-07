@@ -36,6 +36,7 @@ function AddExpenseModal({ onClose }: { onClose: () => void; }) {
     reset();
     setAmount(null);
     setDate('');
+    onClose();
   }
 
   function handleTodayCheckbox(checked: boolean): void {
@@ -51,12 +52,12 @@ function AddExpenseModal({ onClose }: { onClose: () => void; }) {
   return (
     <div className='
       bg-black bg-opacity-30 
-      w-full h-full flex absolute items-center justify-center inset-0
+      w-full h-full flex absolute items-center justify-center inset-0 animate-fadeInBackground
       p-4 md:p-0'
       onClick={onClose}
       style={{ pointerEvents: "all" }}
     >
-      <form style={{ pointerEvents: "auto" }} onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit(handleSubmitLocal)} className='bg-white p-8 rounded-md w-full md:w-1/3'>
+      <form style={{ pointerEvents: "auto" }} onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit(handleSubmitLocal)} className='bg-white p-8 rounded-md w-full md:w-1/3 animate-fadeInUpFaster'>
         <h3 className="text-lg">
           Adicionar gasto
         </h3>
@@ -81,7 +82,7 @@ function AddExpenseModal({ onClose }: { onClose: () => void; }) {
             >
               <option value='' disabled>Categorias</option>
               {categories.map((category: ICategory) => (
-                <option key={category.categoryId}>{category.name}</option>
+                <option key={category.name} >{category.name}</option>
               ))}
             </select>
             {errors.category && <span className="text-red-600 font-medium text-xs mt-2 text-start">{errors.category.message}</span>}
