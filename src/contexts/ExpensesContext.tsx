@@ -2,6 +2,7 @@ import { addDoc, collection, deleteDoc, doc, getDocs, limit, orderBy, query, upd
 import { db } from "../firebase.config";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { formatDateToPTBR } from "../utils/date";
+import { useFeedbackModal } from "../hooks/useFeedbackModal";
 
 export const ExpensesContext = createContext<any>({} as any);
 
@@ -9,6 +10,7 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
 
   const [expenses, setExpenses] = useState<any>([]);
   const [lastExpenses, setLastExpenses] = useState<any>([]);
+  const { setActive, setIsErrorFeedback } = useFeedbackModal();
 
   async function getExpenses() {
     const querySnapshot = await getDocs(collection(db, "expenses"));
@@ -60,11 +62,17 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
       newItem.id = docRef.id;
 
       setExpenses((prevExpenses: any) => [...prevExpenses, newItem])
+      setActive(true);
 
       callback();
 
     } catch (error) {
+      setActive(true);
+      setIsErrorFeedback(true);
+      
+      callback();
       console.error("Error adding document: ", error);
+
     }
   }
 

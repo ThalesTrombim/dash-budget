@@ -6,9 +6,12 @@ import { useExpenses } from "../../hooks/useExpenses";
 import ExpenseListItem from "../newComponents/ExpenseListItem";
 import ExpenseListItemMobile from "../newComponents/ExpenseListItemMobile";
 import ConfirmationModal from "../newComponents/ConfirmationModal";
+import { useFeedbackModal } from "../../hooks/useFeedbackModal";
+import { FeedbackModal } from "../newComponents/FeedbackModal";
 
 function AddExpense() {
   const { expenses, deleteExpense } = useExpenses();
+  const { active } = useFeedbackModal();
 
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState<boolean>(false);
   const [isConfirmationDeleteModalOpen, setIsConfirmationDeleteModalOpen] = useState<boolean>(false);
@@ -27,6 +30,10 @@ function AddExpense() {
 
       {
         isConfirmationDeleteModalOpen && <ConfirmationModal onClose={() => setIsConfirmationDeleteModalOpen(false)} onConfirm={() => deleteExpense(selectedExpenseId)} />
+      }
+
+      {
+        active && <FeedbackModal />
       }
 
       <div className="flex w-full h-full bg-[#f7f7f7]">
