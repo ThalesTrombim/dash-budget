@@ -43,8 +43,8 @@ export const useCategory = () => {
 
   const groupAndSumByMonthAndYear = (arr: any) => {
     const grouped = arr.reduce((acc: any, current: any) => {
-      // Extrair dia, mês e ano da string de data "DD-MM-YYYY"
-      const [day, month, year] = current.date.split('/');
+      // Extrair ano, mês e dia da string de data "YYYY-MM-DD"
+      const [year, month, day] = current.date.split('-');
   
       // Criar a chave no formato MM-YYYY
       const key = `${month}-${year}`;
@@ -59,9 +59,9 @@ export const useCategory = () => {
   
       return acc;
     }, {});
-
-    return Object.values(grouped).sort((a: any, b:any) => {
-      const [monthA, yearA] = a.month.split('-').map(Number);  // Separar e converter para número
+  
+    return Object.values(grouped).sort((a: any, b: any) => {
+      const [monthA, yearA] = a.month.split('-').map(Number); // Separar e converter para número
       const [monthB, yearB] = b.month.split('-').map(Number);
   
       // Comparar os anos, depois comparar os meses se os anos forem iguais
