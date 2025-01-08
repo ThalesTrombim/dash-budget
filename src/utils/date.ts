@@ -10,9 +10,9 @@ export function dateToPTBR(dateString: string) {
 }
 export function dateToPTBR2(dateString: string) {
   try {
-    // Parse a data no formato dd/MM/yyyy
-    const date = parse(dateString, "dd/MM/yyyy", new Date());
-    console.log('data', date);
+    // Parse a data no formato yyyy-MM-dd
+    const date = parse(dateString, "yyyy-MM-dd", new Date());
+
     // Verifica se a data é válida
     if (isNaN(date.getTime())) {
       throw new Error("Data inválida");
@@ -32,4 +32,19 @@ export function formatDateToPTBR(date: string) {
   const formattedDate = format(parseISO(date), "dd/MM/yyyy");
 
   return formattedDate;
+}
+
+export function convertDateToISO(dateString: string): string {
+  const inputFormat = 'dd/MM/yyyy';
+  const outputFormat = 'yyyy-MM-dd';
+
+  const date = parse(dateString, inputFormat, new Date());
+
+  return format(date, outputFormat);
+}
+
+export function getTodayDate(): string {
+  const today = new Date();
+
+  return format(today, 'dd/MM/yyyy');
 }

@@ -8,6 +8,7 @@ import ExpenseListItemMobile from "../newComponents/ExpenseListItemMobile";
 import ConfirmationModal from "../newComponents/ConfirmationModal";
 import { useFeedbackModal } from "../../hooks/useFeedbackModal";
 import { FeedbackModal } from "../newComponents/FeedbackModal";
+import { EditExpenseModal } from "../newComponents/EditExpenseModal/EditExpenseModal";
 
 function AddExpense() {
   const { expenses, deleteExpense } = useExpenses();
@@ -15,11 +16,19 @@ function AddExpense() {
 
   const [isAddExpenseModalOpen, setIsAddExpenseModalOpen] = useState<boolean>(false);
   const [isConfirmationDeleteModalOpen, setIsConfirmationDeleteModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [selectedExpenseId, setSelectedExpenseId] = useState('');
+  const [selectedExpense, setSelectedExpense] = useState<any>();
+
 
   function handleDelete(expenseId: string) {
     setSelectedExpenseId(expenseId);
     setIsConfirmationDeleteModalOpen(true);
+  }
+
+  function handleEditModalOpen(expense: any) {
+    setIsEditModalOpen(true);
+    setSelectedExpense(expense);
   }
 
   return (
@@ -30,6 +39,19 @@ function AddExpense() {
 
       {
         isConfirmationDeleteModalOpen && <ConfirmationModal onClose={() => setIsConfirmationDeleteModalOpen(false)} onConfirm={() => deleteExpense(selectedExpenseId)} />
+      }
+
+      {
+        isEditModalOpen && 
+        <EditExpenseModal
+          id={selectedExpense.id}
+          name={selectedExpense.name}
+          expenseCategory={selectedExpense.category}
+          oldAmount={selectedExpense.amount}
+          oldDate={selectedExpense.date}
+          paymentMethod={selectedExpense.paymentMethod}
+          onClose={() => setIsEditModalOpen(false)}
+        />
       }
 
       {
@@ -68,6 +90,7 @@ function AddExpense() {
                     category={expense.category} 
                     paymentMethod={expense.paymentMethod}
                     handleDeleteExpense={() => handleDelete(expense.id)}
+                    handleEdit={() => handleEditModalOpen(expense)}
                   />
                 ))
               }
@@ -84,6 +107,7 @@ function AddExpense() {
                     amount={expense.amount}
                     paymentMethod={expense.paymentMethod}
                     handleDeleteExpense={() => handleDelete(expense.id)}
+                    // onClick={() => handleEditModalOpen(expense)}
                   />
                 ))
               }

@@ -1,7 +1,6 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, limit, orderBy, query, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { formatDateToPTBR } from "../utils/date";
 import { useFeedbackModal } from "../hooks/useFeedbackModal";
 
 export const ExpensesContext = createContext<any>({} as any);
@@ -42,13 +41,12 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
       const expenseCollection = collection(db, 'expenses');
     
       const formatedAmount = parseFloat(amount.replace('R$', '').trim().replace(/\./g, "").replace(",", "."));
-      const formattedDate = formatDateToPTBR(date);
 
       const newItem = {
         name,
         amount: formatedAmount,
         category,
-        date: formattedDate,
+        date,
         paymentMethod,
         id: '',
       }
@@ -75,6 +73,42 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
 
     }
   }
+
+  async function updateExpense(expenseId: string, updatedExpense: any, callback: () => void) {
+    console.log('expenseId', expenseId);
+    console.log('updatedExpense', updatedExpense);
+    try {
+      const { name, amount, date, category, paymentMethod } = updatedExpense;
+
+      console.log('amount', amount);
+      const formattedAmount = parseFloat(amount.replace('R$', '').trim().replace(/\./g, "").replace(",", "."));
+
+      const newItem = {
+        name,
+        amount: formattedAmount,
+        category,
+        date,
+        paymentMethod,
+      }
+
+      await updateDoc(doc(db, "expenses", expenseId), newItem);
+      setExpenses(expenses)
+
+      const updatedExpenses = expenses.map((expense: any) => expense.id === expenseId ? { ...newItem, id: expenseId } : expense)
+
+      setExpenses(updatedExpenses);
+      setActive(true);
+
+      callback();
+    } catch (error) {
+      setActive(true);
+      setIsErrorFeedback(true);
+      
+      callback();
+      console.log('Error', error);
+    }
+  }
+
 
   async function deleteExpense(id: string) {
     try {
@@ -108,16 +142,10 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
       expenses,
       lastExpenses,
       addNewExpense,
-      deleteExpense
+      deleteExpense,
+      updateExpense
     }}>
       { children }
     </ExpensesContext.Provider>
   )
-
-  // return {
-  //   expenses,
-  //   lastExpenses,
-  //   addNewExpense,
-  //   deleteExpense
-  // }
 }
