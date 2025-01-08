@@ -107,7 +107,7 @@ function AddExpense() {
                     amount={expense.amount}
                     paymentMethod={expense.paymentMethod}
                     handleDeleteExpense={() => handleDelete(expense.id)}
-                    // onClick={() => handleEditModalOpen(expense)}
+                    handleEdit={() => handleEditModalOpen(expense)}
                   />
                 ))
               }
