@@ -50,7 +50,6 @@ function EditExpenseModal({ id, name, expenseCategory, oldDate, oldAmount, payme
   }, [expenseCategory, setValue, categories]);
  
   function handleSubmitLocal(e: any): void {
-    console.log('id', e);
     updateExpense(id, e, resetForm);
   }
 

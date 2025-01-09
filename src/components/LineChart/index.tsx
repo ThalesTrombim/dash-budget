@@ -1,10 +1,9 @@
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import { useCategory } from '../../hooks/useCategories';
 import { useExpenses } from '../../hooks/useExpenses';
 import { convertNumberToBRL } from '../../utils/monetary';
+import { groupAndSumByMonthAndYear } from '../../utils/amountHandlers';
 
 function LineChartComponent() {
-  const { groupAndSumByMonthAndYear } = useCategory();
   const { expenses } = useExpenses();
 
   const chartData = Object.values(groupAndSumByMonthAndYear(expenses));

@@ -1,6 +1,7 @@
-export interface ICategory {
+export interface Category {
   categoryId: any;
-  color: string;
   icon: string;
+  color: string;
   name: string;
+  lastExpense?: string;
 }

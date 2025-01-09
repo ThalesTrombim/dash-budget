@@ -32,11 +32,6 @@ function AddExpense() {
     setIsConfirmationDeleteModalOpen(true);
   }
 
-  useEffect(() => {
-    console.log('Categories', categories);
-    console.log('CategoriesByAmount', expensesByCategory);
-  }, [expenses, categories, expensesByCategory]);
-
   function handleEditModalOpen(expense: any) {
     setIsEditModalOpen(true);
     setSelectedExpense(expense);
