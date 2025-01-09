@@ -23,13 +23,13 @@ function SideMenu() {
       active: true
     },
     {
-      name: 'Adicionar gasto',
+      name: 'Despesas',
       icon: 'MdAddchart',
       path: '/add-expense',
       active: false
     },
     {
-      name: 'Adicionar categoria',
+      name: 'Categorias',
       icon: 'MdFormatListBulletedAdd',
       path: '/add-category',
       active: false
