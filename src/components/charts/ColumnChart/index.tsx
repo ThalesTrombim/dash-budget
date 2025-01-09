@@ -15,29 +15,14 @@ function ColumnChart() {
 
   }, [categoriesByAmount, categories]);
 
-  // return (
-  //   <div className={style.columnChartContainer}>
-  //     {
-  //       !categories ? <p>Loading...</p> :
-  //       <Chart 
-  //         chartType="ColumnChart"
-  //         width="100%"
-  //         height="100%"
-  //         data={chartData}
-  //       />
-  //     }
-  //   </div>
-  // )
-
-  console.log('categories amount', chartData)
-
   return (
-    <div style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
-      <div style={{ color: 'black', fontWeight: 500, fontSize: '20px', marginBottom: '1rem'}}>
-         <h3>Total por categoria</h3>
+    <div className="w-full flex flex-col bg-white p-4 rounded-lg shadow-md h-full">
+
+      <div className='text-start text-xl font-bold'>
+        <h3>Total por categoria</h3>
       </div>
       <div style={{ flexGrow: 1}} >
-        <ResponsiveContainer width={"100%"} height={"100%"}>
+        <ResponsiveContainer width={"100%"} height={"98%"}>
           <BarChart
             width={500}
             height={300}
