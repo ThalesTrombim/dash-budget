@@ -1,7 +1,8 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useFeedbackModal } from "../hooks/useFeedbackModal";
+import { useFirebaseMethods } from "../hooks/useFirebaseMethods";
 
 export const ExpensesContext = createContext<any>({} as any);
 
@@ -11,16 +12,7 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
   const [lastExpenses, setLastExpenses] = useState<any>([]);
   const { setActive, setIsErrorFeedback } = useFeedbackModal();
 
-  async function getExpenses() {
-    const querySnapshot = await getDocs(collection(db, "expenses"));
-    const data:any = [];
-  
-    querySnapshot.forEach((doc) => {
-      data.push({...doc.data()});
-    });
-  
-    return data;
-  }
+  const { getCollectionData } = useFirebaseMethods();
 
   function parseDate(dateString: string) {
     const [day, month, year] = dateString.split("-").map(Number);
@@ -49,7 +41,6 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
 
   async function addNewExpense(newExpense: any, categoryId: any, callback: () => void) {
     try {
-      console.log('categoryId', categoryId);
 
       const { name, amount, date, category, paymentMethod } = newExpense;
       const expenseCollection = collection(db, 'expenses');
@@ -92,12 +83,9 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
   }
 
   async function updateExpense(expenseId: string, updatedExpense: any, callback: () => void) {
-    console.log('expenseId', expenseId);
-    console.log('updatedExpense', updatedExpense);
     try {
       const { name, amount, date, category, paymentMethod } = updatedExpense;
 
-      console.log('amount', amount);
       const formattedAmount = parseFloat(amount.replace('R$', '').trim().replace(/\./g, "").replace(",", "."));
 
       const newItem = {
@@ -146,7 +134,7 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
 
   useEffect(() => {
     async function getExpensesFirestore() {
-      const data = await getExpenses();
+      const data = await getCollectionData('expenses');
 
       getLastFiveExpenses(data);
       setExpenses(data);

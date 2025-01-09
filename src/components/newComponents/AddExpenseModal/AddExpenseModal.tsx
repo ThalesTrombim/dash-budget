@@ -55,20 +55,11 @@ function AddExpenseModal({ onClose }: { onClose: () => void; }) {
     const selectedValue = e.target.value; // Obtém o categoryName do valor do select
     const selectedCategory = categories.find((c: any) => c.name === selectedValue); // Encontra o objeto da categoria correspondente
 
-
-    console.log('selectedCategory', selectedCategory);
-
     if (selectedCategory) {
-      console.log('here', );
       setValue("category", selectedValue); // Atualiza o categoryName no React Hook Form
       setCategoryId(selectedCategory.categoryId); // Atualiza o categoryId no outro estado
     }
   };
-
-  useEffect(() => {
-    console.log('Changing', categoryId);
-  }, [categoryId])
-  
 
   return (
     <div className='

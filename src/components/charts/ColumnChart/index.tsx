@@ -6,14 +6,14 @@ import { useCategory } from "../../../hooks/useCategories";
 import { Bar, BarChart, CartesianGrid, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 function ColumnChart() {
-  const { categoriesByAmount, categories, expensesByCategory } = useCategory();
+  const { categoriesOrderByAmount, categories, expensesByCategory } = useCategory();
 
   const [chartData, setChartData] = useState<any[]>([]);
 
   useEffect(() => {
     setChartData(expensesByCategory);
 
-  }, [categoriesByAmount, categories]);
+  }, [categoriesOrderByAmount, categories]);
 
   return (
     <div className="w-full flex flex-col bg-white p-4 rounded-lg shadow-md h-full">

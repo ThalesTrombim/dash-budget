@@ -16,7 +16,6 @@ const iconsList: any = [
 
 
 function CategoryIcon({icon}: {icon: string}) {
-  console.log('Component')
   const componentSelected = (name: string) => {
     const ComponentIcon =  iconsList[name];
 
