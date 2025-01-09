@@ -9,6 +9,8 @@ export const useCategory = () => {
   const [colorsOnly, setColorsOnly] = useState<any>([]);
   const [expensesByCategory, setExpensesByCategory] = useState<any>([]);
 
+  const [categoriesWithAmount, setCategoriesWithAmount] = useState<any>([]);
+
   const { expenses } = useExpenses();
 
   async function getCategories() {
@@ -33,12 +35,12 @@ export const useCategory = () => {
   }, [])
 
 
-  const totalByCategory = categories.map((categoria: any) => {
+  const totalByCategory = categories.map((category: any) => {
     const total = expenses
-      .filter((produto: any) => produto.category === categoria.name)
+      .filter((produto: any) => produto.category === category.name)
       .reduce((acc: any, produto: any) => acc + produto.amount, 0);
     
-    return { categoria: categoria.name, total, color: categoria.color };
+    return { category: category.name, total, color: category.color, lastExpense: category.lastExpense };
   });
 
   const groupAndSumByMonthAndYear = (arr: any) => {
@@ -85,11 +87,22 @@ export const useCategory = () => {
   }, [expenses, categories])
 
 
+  // useEffect(() => {
+  //   const data: any = [];
+    
+  //   totalByCategory.map((category: any) => {
+  //     data.push({name: category.categoria, totalAmount: category.total, fill: category.color})
+  //   })
+    
+  //   setExpensesByCategory(data);
+  // }, [expenses, categories])
+
+
   useEffect(() => {
     const data: any = [];
     
     totalByCategory.map((category: any) => {
-      data.push({name: category.categoria, totalAmount: category.total, fill: category.color})
+      data.push({name: category.category, totalAmount: category.total, fill: category.color, lastExpense: category.lastExpense })
     })
     
     setExpensesByCategory(data);
