@@ -1,5 +1,5 @@
 export interface ICategory {
-  categoryId: number;
+  categoryId: any;
   color: string;
   icon: string;
   name: string;

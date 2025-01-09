@@ -35,8 +35,22 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
     setLastExpenses(lastFiveExpenses);
   }
 
-  async function addNewExpense(newExpense: any, callback: () => void) {
+  async function updateLastCategorysExpense(categoryId: any, name: any, date: any) {
     try {
+      await updateDoc(doc(db, "categories", categoryId), {
+        lastExpense: {
+          name,date
+        }
+      });
+    } catch (error) {
+      console.log('error updateLastCategorysExpense', error);
+    }
+  }
+
+  async function addNewExpense(newExpense: any, categoryId: any, callback: () => void) {
+    try {
+      console.log('categoryId', categoryId);
+
       const { name, amount, date, category, paymentMethod } = newExpense;
       const expenseCollection = collection(db, 'expenses');
     
@@ -48,7 +62,8 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
         category,
         date,
         paymentMethod,
-        id: '',
+        categoryId,
+        id: ''
       }
 
       const docRef = await addDoc(expenseCollection, newItem)
@@ -60,10 +75,12 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
       newItem.id = docRef.id;
 
       setExpenses((prevExpenses: any) => [...prevExpenses, newItem])
+
+      await updateLastCategorysExpense(categoryId, name, date);
+
       setActive(true);
 
       callback();
-
     } catch (error) {
       setActive(true);
       setIsErrorFeedback(true);
@@ -149,3 +166,4 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
     </ExpensesContext.Provider>
   )
 }
+
