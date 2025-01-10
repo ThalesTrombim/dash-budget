@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 
 function useFirebaseMethods() {
@@ -13,8 +13,27 @@ function useFirebaseMethods() {
     return data;
   }
 
+  async function updateFirebaseDoc(dbName: string, docRefId: string, updatedDoc: Record<string, any>, callback?: () => void) {
+    try {
+      await updateDoc(doc(db, dbName, docRefId), updatedDoc);
+      if(callback) callback();
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function deleteFirebaseDoc(dbName: string, docRefId: string) {
+    try {
+      await deleteDoc(doc(db, dbName, docRefId));
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return {
-    getCollectionData
+    getCollectionData,
+    updateFirebaseDoc,
+    deleteFirebaseDoc,
   }
 }
 

@@ -4,7 +4,7 @@ import { CategoriesContext } from "../contexts/CategoriesContext";
 import { useExpenses } from "./useExpenses";
 
 import { Category } from "../types/categories";
-import { Expense } from "../types/expenses";
+import { ExpenseFirebase } from "../types/expenses";
 
 export const useCategory = () => {
   const { 
@@ -19,8 +19,8 @@ export const useCategory = () => {
 
   const totalByCategory = categories.map((category: Category) => {
     const total = expenses
-      .filter((expense: Expense) => expense.category === category.name)
-      .reduce((acc: number, expense: Expense) => acc + expense.amount, 0);
+      .filter((expense: ExpenseFirebase) => expense.category === category.name)
+      .reduce((acc: number, expense: ExpenseFirebase) => acc + expense.amount, 0);
     
     return { category: category.name, total, color: category.color, lastExpense: category.lastExpense };
   });
