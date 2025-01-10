@@ -1,47 +1,49 @@
-import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useFeedbackModal } from "../hooks/useFeedbackModal";
 import { useFirebaseMethods } from "../hooks/useFirebaseMethods";
+import { Expense, ExpenseFirebase, NewExpense } from "../types/expenses";
 
-export const ExpensesContext = createContext<any>({} as any);
+interface ExpenseContext {
+  expenses: ExpenseFirebase[];
+  lastExpenses: Expense[];
+  updateLastExpenses: (value: Expense[]) => void;
+  updateExpense: (expenseId: string, updatedExpense: Expense, callback: () => void) => void;
+  addNewExpense: (newExpense: NewExpense, categoryId: string, callback: () => void) => void;
+  deleteExpense: (id: any) => Promise<void>;
+}
+
+export const ExpensesContext = createContext({} as ExpenseContext);
 
 export const ExpensesContextProvider = ({ children }: { children: ReactNode }) => {
+  const [expenses, setExpenses] = useState<ExpenseFirebase []>([]);
+  const [lastExpenses, setLastExpenses] = useState<Expense []>([]);
 
-  const [expenses, setExpenses] = useState<any>([]);
-  const [lastExpenses, setLastExpenses] = useState<any>([]);
   const { setActive, setIsErrorFeedback } = useFeedbackModal();
 
-  const { getCollectionData } = useFirebaseMethods();
+  const { getCollectionData, updateFirebaseDoc, deleteFirebaseDoc } = useFirebaseMethods();
 
-  function parseDate(dateString: string) {
-    const [day, month, year] = dateString.split("-").map(Number);
-    return new Date(year, month - 1, day);
+  function updateLastExpenses(value: Expense []) {
+    setLastExpenses(value);
   }
 
-  function getLastFiveExpenses(expenses: any) {
-    const lastFiveExpenses = expenses
-      .sort((a: any, b: any) => parseDate(b.date).getTime() - parseDate(a.date).getTime()) // Ordena do mais recente para o mais antigo
-      .slice(0, 5);
-
-    setLastExpenses(lastFiveExpenses);
-  }
-
-  async function updateLastCategorysExpense(categoryId: any, name: any, date: any) {
+  async function updateLastCategorysExpense(categoryId: string, name: string, date: string) {
     try {
-      await updateDoc(doc(db, "categories", categoryId), {
+      const updatedDoc = {
         lastExpense: {
           name,date
         }
-      });
+      };
+
+      await updateFirebaseDoc('categories', categoryId, updatedDoc);
     } catch (error) {
       console.log('error updateLastCategorysExpense', error);
     }
   }
 
-  async function addNewExpense(newExpense: any, categoryId: any, callback: () => void) {
+  async function addNewExpense(newExpense: NewExpense, categoryId: string, callback: () => void) {
     try {
-
       const { name, amount, date, category, paymentMethod } = newExpense;
       const expenseCollection = collection(db, 'expenses');
     
@@ -69,20 +71,19 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
 
       await updateLastCategorysExpense(categoryId, name, date);
 
-      setActive(true);
+      handleFeedbackModal();
 
       callback();
     } catch (error) {
       setActive(true);
-      setIsErrorFeedback(true);
+      handleFeedbackModal(true);
       
       callback();
       console.error("Error adding document: ", error);
-
     }
   }
 
-  async function updateExpense(expenseId: string, updatedExpense: any, callback: () => void) {
+  async function updateExpense(expenseId: string, updatedExpense: Expense, callback: () => void) {
     try {
       const { name, amount, date, category, paymentMethod } = updatedExpense;
 
@@ -96,37 +97,34 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
         paymentMethod,
       }
 
-      await updateDoc(doc(db, "expenses", expenseId), newItem);
+      await updateFirebaseDoc("expenses", expenseId, newItem);
       setExpenses(expenses)
 
       const updatedExpenses = expenses.map((expense: any) => expense.id === expenseId ? { ...newItem, id: expenseId } : expense)
 
       setExpenses(updatedExpenses);
-      setActive(true);
+      handleFeedbackModal();
 
       callback();
     } catch (error) {
-      setActive(true);
-      setIsErrorFeedback(true);
+      handleFeedbackModal(true);
       
       callback();
       console.log('Error', error);
     }
   }
 
+  function handleFeedbackModal(isError: boolean = false) {
+    if(isError) setIsErrorFeedback(true);
+    setActive(true);
+  }
 
   async function deleteExpense(id: string) {
     try {
-      const docRef = doc(db, 'expenses', id);
-  
-      // Deleta o documento
       const expensesUpdated = expenses.filter((expense: any) => expense.id !== id);
-      
       setExpenses(expensesUpdated);
 
-      await deleteDoc(docRef);
-  
-      console.log(`Documento com ID ${id} foi deletado com sucesso.`);
+      await deleteFirebaseDoc('expenses', id);
     } catch (error) {
       console.error("Erro ao deletar o documento:", error);
     }
@@ -136,10 +134,9 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
     async function getExpensesFirestore() {
       const data = await getCollectionData('expenses');
 
-      getLastFiveExpenses(data);
       setExpenses(data);
     }
-    getExpensesFirestore();
+    if(!expenses.length) getExpensesFirestore();
   }, [])
 
   return (
@@ -148,10 +145,10 @@ export const ExpensesContextProvider = ({ children }: { children: ReactNode }) =
       lastExpenses,
       addNewExpense,
       deleteExpense,
-      updateExpense
+      updateExpense,
+      updateLastExpenses
     }}>
       { children }
     </ExpensesContext.Provider>
   )
 }
-
