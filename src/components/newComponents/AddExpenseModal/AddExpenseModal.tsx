@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useCategory } from "../../../hooks/useCategories";
-import { ICategory } from "../../../types/categories";
+import { Category } from "../../../types/categories";
 import { InputForm } from "./components/InputForm";
 import { useExpenses } from "../../../hooks/useExpenses";
 import { useForm } from "react-hook-form";
@@ -12,8 +12,6 @@ type FormValues = {
   amount: number;
   paymentMethod: string;
 };
-
-
 
 function AddExpenseModal({ onClose }: { onClose: () => void; }) {
   const [name, setName] = useState<string>('');
@@ -94,7 +92,7 @@ function AddExpenseModal({ onClose }: { onClose: () => void; }) {
               className={`${errors.category && 'border-red-500'} bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow`}
             >
               <option value='' disabled>Categorias</option>
-              {categories.map((category: ICategory) => (
+              {categories.map((category: Category) => (
                 <option id={category.categoryId} key={category.name} value={category.name} >{category.name}</option>
               ))}
             </select>

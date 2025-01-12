@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 
 function useFirebaseMethods() {
@@ -29,11 +29,21 @@ function useFirebaseMethods() {
       throw error;
     }
   }
+  
+  async function AddFirebaseDoc(dbName: string, newDoc: Record<string, any>,) {
+
+    try {
+      await addDoc(collection(db, dbName), newDoc);
+    } catch (error) {
+      throw error;
+    }
+  }
 
   return {
     getCollectionData,
     updateFirebaseDoc,
     deleteFirebaseDoc,
+    AddFirebaseDoc
   }
 }
 

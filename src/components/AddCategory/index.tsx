@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
-import { AddExpenseModal } from "../newComponents/AddExpenseModal/AddExpenseModal";
+import { useState } from "react";
 
 import { GoPlus } from "react-icons/go";
 import { useExpenses } from "../../hooks/useExpenses";
-import ExpenseListItem from "../newComponents/ExpenseListItem";
-import ExpenseListItemMobile from "../newComponents/ExpenseListItemMobile";
 import ConfirmationModal from "../newComponents/ConfirmationModal";
 import { useFeedbackModal } from "../../hooks/useFeedbackModal";
 import { FeedbackModal } from "../newComponents/FeedbackModal";
 import { EditExpenseModal } from "../newComponents/EditExpenseModal/EditExpenseModal";
 import { useCategory } from "../../hooks/useCategories";
 import { CategoryListItem } from "../newComponents/CategoryListItem";
-
+import { AddCategoryModal } from "../newComponents/AddCategoryModal";
 
 // TODO: Adicionar state para exibir as categorias com os dados que esse componente pede.
 
-function AddExpense() {
+function CategoriesView() {
   const { expenses, deleteExpense } = useExpenses();
   const { categories, expensesByCategory } = useCategory();
   
@@ -32,15 +29,12 @@ function AddExpense() {
     setIsConfirmationDeleteModalOpen(true);
   }
 
-  function handleEditModalOpen(expense: any) {
-    setIsEditModalOpen(true);
-    setSelectedExpense(expense);
-  }
+  // TODO: Ao remover uma categoria, remover todos os gastos dela
 
   return (
     <>
       {
-        isAddExpenseModalOpen && <AddExpenseModal onClose={() => setIsAddExpenseModalOpen(false)} />
+        isAddExpenseModalOpen && <AddCategoryModal onClose={() => setIsAddExpenseModalOpen(false)} />
       }
 
       {
@@ -82,23 +76,27 @@ function AddExpense() {
             </div>
           </div>
 
+          <div>
+            <ul className="flex items-center bg-gray-100 rounded-md shadow-md p-4 mt-6 text-start text-sm select-none">
+              <li className="flex items-center w-1/3">Nome</li>
+              <li className="flex items-center w-1/5">Total gasto</li>
+              <li className="flex items-center w-1/5">Nome da ultima despesa</li>
+              <li className="flex items-center w-1/4">Data da ultima despesa</li>
+            </ul>
+          </div>
+
           {/* BODY */}
           <div className="mt-8">
             <ul className="flex-col text-start gap-2 hidden md:flex">
               {
-                // expensesByCategory.map((category: any) => (
-                //   <p key={category.name}>{category.name}</p>
-                // ))
-                
                 expensesByCategory.map((category: any) => {
-                  // <p>{category.name}</p>
                   return category.totalAmount > 0 ? (
                     <CategoryListItem
                       name={category.name}
                       icon={category.icon}
                       totalAmount={category.totalAmount}
                       lastExpenseName={category.lastExpense?.name}
-                      // lastExpenseDate={category.lastExpenseDate}
+                      lastExpenseDate={category.lastExpense?.date}
                     />
                   ) : null
                 })
@@ -112,4 +110,4 @@ function AddExpense() {
   )
 }
 
-export default AddExpense
+export { CategoriesView };

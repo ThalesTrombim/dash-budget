@@ -6,7 +6,6 @@ import { LuLampCeiling } from "react-icons/lu";
 import { FiTv } from "react-icons/fi"
 import { PiDesktopTowerLight } from "react-icons/pi"
 
-import style from "./IconListStyle.module.scss";
 import { useState } from "react";
 
 const iconsList = [
@@ -109,10 +108,10 @@ function IconsList({ sendSelectedIcon }: IProps) {
   }
 
   return (
-    <div className={style.iconListContainer}>
+    <div className="flex flex-wrap gap-2">
       {
         iconsList.map((iconItem: any) => (
-          <div key={iconItem.name} onClick={() => handleSelectIcon(iconItem.name)} className={`${style.iconBoxContainer}, ${selectedIcon === iconItem.name ? style.iconActive : style.iconBoxContainer}`}>
+          <div key={iconItem.name} onClick={() => handleSelectIcon(iconItem.name)} className={`flex bg-[#CAC4CE] p-2 hover:bg-[#B5AFB8] cursor-pointer`}>
             {iconItem.component}
           </div>
         ))
