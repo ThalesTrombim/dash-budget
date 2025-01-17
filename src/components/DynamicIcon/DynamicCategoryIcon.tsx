@@ -23,7 +23,7 @@ const iconsList: any = {
   'Revestimento': GiBrickWall,
   GiPorcelainVase,
   GiSofa,
-  GiWindow,
+  'Nova categoria com icone': GiWindow,
   GiPayMoney,
   MdOutlineSensorDoor,
   MdBlender,

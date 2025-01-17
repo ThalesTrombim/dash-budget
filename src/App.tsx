@@ -8,8 +8,8 @@ import SideMenu from './components/SideMenu';
 import { ExpensesContextProvider } from './contexts/ExpensesContext';
 import { CategoriesContextProvider } from './contexts/CategoriesContext';
 
+// TODO: Colocar tamanho minimo na pagina da home
 function App() {
-
   return (
     <BrowserRouter>
       <AuthContextProvider>
@@ -18,7 +18,7 @@ function App() {
             <CategoriesContextProvider>
               <div className='flex w-full bg-[#f7f7f7]'>
                 <SideMenu />
-                <div className='flex ml-[56px] md:ml-[264px] md:p-6 w-full h-dvh'>
+                <div className='flex ml-[56px] md:ml-[264px] md:p-6 w-full'>
                   <Router />
                 </div>
               </div>

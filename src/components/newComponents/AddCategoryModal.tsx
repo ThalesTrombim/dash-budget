@@ -31,10 +31,10 @@ function AddCategoryModal({ onClose }: { onClose: () => void; }) {
   return (
     <div className='
       bg-black bg-opacity-30 
-      w-full h-full flex absolute items-center justify-center inset-0 animate-fadeInBackground
-      p-4 md:p-0'
+      w-full flex fixed items-center justify-center inset-0.5 animate-fadeInBackground
+      p-4 md:p-0 h-full'
       onClick={onClose}
-      style={{ pointerEvents: "all" }}
+      style={{ pointerEvents: "all", zIndex: 1000 }}
     >
       <form style={{ pointerEvents: "auto" }} onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit(handleSubmitLocal)} className='bg-white p-8 rounded-md w-full md:w-1/3 animate-fadeInUpFaster'>
         <h3 className="text-lg">
@@ -48,7 +48,8 @@ function AddCategoryModal({ onClose }: { onClose: () => void; }) {
 
           <div className="text-start flex flex-col gap-4 mt-4">
             <label htmlFor="" className="text-sm text-slate-600">Escolha um icone</label>
-            <IconsList sendSelectedIcon={(item) => handleSelectedIcon(item)} />
+            <IconsList {...register("icon", { required: "É obrigatório escolher um icone." })} sendSelectedIcon={(item) => handleSelectedIcon(item)} />
+            {errors.icon && <span className="text-red-500 text-xs mt-2 text-start">{errors.icon.message}</span>}
           </div>
 
           <div className="flex justify-between gap-4 mt-6">

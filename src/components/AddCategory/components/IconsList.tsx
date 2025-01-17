@@ -13,7 +13,7 @@ import DynamicCategoryIcon from "../../DynamicIcon/DynamicCategoryIcon";
 type IProps = {
   sendSelectedIcon: (icon: string) => void;
 }
-function IconsList({ sendSelectedIcon }: IProps) {
+function IconsList({ sendSelectedIcon, ...props }: IProps) {
   const [selectedIcon, setSelectedIcon] = useState<any>('');
 
   function handleSelectIcon(icon: string) {
@@ -22,7 +22,7 @@ function IconsList({ sendSelectedIcon }: IProps) {
   }
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-1" {...props}>
       {
         icons.map((icon: any) => (
           // <div key={iconItem.name} onClick={() => handleSelectIcon(iconItem.name)} className={`flex bg-[#CAC4CE] p-2 hover:bg-[#B5AFB8] cursor-pointer`}>
