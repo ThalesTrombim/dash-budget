@@ -15,11 +15,17 @@ function AddCategoryModal({ onClose }: { onClose: () => void; }) {
 
   function handleSubmitLocal(e: any): void {
     addNewCategory(e);
+    resetForm();
+  }
+
+  function handleSelectedIcon(icon: string) {
+    setValue('icon', icon)
   }
 
   function resetForm() {
     reset();
     onClose();
+    setValue('icon', '');
   }
 
   return (
@@ -40,7 +46,10 @@ function AddCategoryModal({ onClose }: { onClose: () => void; }) {
             <InputForm errors={errors.name} {...register("name", { required: "O nome é obrigatório." })} label="Nome" placeholder="Digite o nome" />
           </div>
 
-          <IconsList sendSelectedIcon={(item) => console.log('Item', item)} />
+          <div className="text-start flex flex-col gap-4 mt-4">
+            <label htmlFor="" className="text-sm text-slate-600">Escolha um icone</label>
+            <IconsList sendSelectedIcon={(item) => handleSelectedIcon(item)} />
+          </div>
 
           <div className="flex justify-between gap-4 mt-6">
             <button type="button" onClick={onClose} className="bg-red-400 hover:bg-red-500 text-white py-2 px-4 rounded-md w-full">Cancelar</button>

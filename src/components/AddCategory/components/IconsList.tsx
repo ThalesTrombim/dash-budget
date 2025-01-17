@@ -7,98 +7,12 @@ import { FiTv } from "react-icons/fi"
 import { PiDesktopTowerLight } from "react-icons/pi"
 
 import { useState } from "react";
+import { icons } from "../../../data/iconsListData";
+import DynamicCategoryIcon from "../../DynamicIcon/DynamicCategoryIcon";
 
-const iconsList = [
-  {
-    name: 'GiBrickWall',
-    component: <GiBrickWall size={24} color="#fff"/>,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'GiPorcelainVase',
-    component: <GiPorcelainVase size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'GiSofa',
-    component: <GiSofa size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'GiWindow',
-    component: <GiWindow size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'MdOutlineSensorDoor',
-    component: <MdOutlineSensorDoor size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'MdBlender',
-    component: <MdBlender size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'MdOutlineFormatPaint',
-    component: <MdOutlineFormatPaint size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'MdTableBar',
-    component: <MdTableBar size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'FaFaucet',
-    component: <FaFaucet size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'FaSink',
-    component: <FaSink size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'TbPlant',
-    component: <TbPlant size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'LuLampCeiling',
-    component: <LuLampCeiling size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'FiTv',
-    component: <FiTv size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-  {
-    name: 'PiDesktopTowerLight',
-    component: <PiDesktopTowerLight size={24} color="#fff" />,
-    color: "#fff",
-    selected: false
-  },
-]
-
-interface IProps {
+type IProps = {
   sendSelectedIcon: (icon: string) => void;
 }
-
 function IconsList({ sendSelectedIcon }: IProps) {
   const [selectedIcon, setSelectedIcon] = useState<any>('');
 
@@ -108,11 +22,14 @@ function IconsList({ sendSelectedIcon }: IProps) {
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1">
       {
-        iconsList.map((iconItem: any) => (
-          <div key={iconItem.name} onClick={() => handleSelectIcon(iconItem.name)} className={`flex bg-[#CAC4CE] p-2 hover:bg-[#B5AFB8] cursor-pointer`}>
-            {iconItem.component}
+        icons.map((icon: any) => (
+          // <div key={iconItem.name} onClick={() => handleSelectIcon(iconItem.name)} className={`flex bg-[#CAC4CE] p-2 hover:bg-[#B5AFB8] cursor-pointer`}>
+          //   {iconItem.component}
+          // </div>
+          <div key={icon} onClick={() => handleSelectIcon(icon)}  className={`flex bg-[#CAC4CE] p-2 hover:bg-[#B5AFB8] cursor-pointer rounded ${selectedIcon === icon ? 'bg-[#B5AFB8]' : ''}`}>
+            <DynamicCategoryIcon icon={icon} color="#fff" />
           </div>
         ))
       }

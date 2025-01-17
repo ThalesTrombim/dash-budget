@@ -1,7 +1,10 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { useFeedbackModal } from "./useFeedbackModal";
 
 function useFirebaseMethods() {
+  const { setActive } = useFeedbackModal();
+
   async function getCollectionData(dbName: string) {
     const querySnapshot = await getDocs(collection(db, dbName));
     const data:any = [];
@@ -31,9 +34,11 @@ function useFirebaseMethods() {
   }
   
   async function AddFirebaseDoc(dbName: string, newDoc: Record<string, any>,) {
-
     try {
-      await addDoc(collection(db, dbName), newDoc);
+      const res = await addDoc(collection(db, dbName), newDoc);
+
+      setActive(true);
+      return res;
     } catch (error) {
       throw error;
     }

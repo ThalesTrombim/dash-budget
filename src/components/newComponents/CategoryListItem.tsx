@@ -10,10 +10,10 @@ type IProps = {
   totalAmount: number
   lastExpenseName?: string
   lastExpenseDate?: string
-  // handleDeleteExpense: () => void;
+  handleDeleteCategory: () => void;
 }
 
-function CategoryListItem({ name, totalAmount, lastExpenseName, lastExpenseDate } : IProps) {
+function CategoryListItem({ name, totalAmount, lastExpenseName, lastExpenseDate, handleDeleteCategory } : IProps) {
 
   const formattedAmount = convertNumberToBRL(totalAmount);
 
@@ -30,7 +30,10 @@ function CategoryListItem({ name, totalAmount, lastExpenseName, lastExpenseDate 
           lastExpenseDate &&
           <span>{formatDateToPTBR(lastExpenseDate)}</span>
         }
-        <FaTrashAlt color='6b7280' onClick={() => console.log('Delete click')} className='cursor-pointer hover:!text-red-600 hover:scale-110'/>
+        {
+          totalAmount === 0 &&
+          <FaTrashAlt color='6b7280' onClick={handleDeleteCategory} className='cursor-pointer hover:!text-red-600 hover:scale-110'/>
+        }
       </div>
     </div>
   )

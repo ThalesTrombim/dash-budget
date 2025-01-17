@@ -13,7 +13,8 @@ export const useCategory = () => {
     categoriesOrderByAmount,
     addNewCategory,
     updateExpensesByCategory,
-    updateCategoriesOrderByAmount 
+    updateCategoriesOrderByAmount,
+    deleteCategory
   } = useContext(CategoriesContext);
 
   const { expenses } = useExpenses();
@@ -23,7 +24,7 @@ export const useCategory = () => {
       .filter((expense: ExpenseFirebase) => expense.category === category.name)
       .reduce((acc: number, expense: ExpenseFirebase) => acc + expense.amount, 0);
     
-    return { category: category.name, icon: category.icon, total, color: category.color, lastExpense: category.lastExpense };
+    return { category: category.name, categoryId: category.categoryId, icon: category.icon, total, color: category.color, lastExpense: category.lastExpense };
   });
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export const useCategory = () => {
     
     totalByCategory.map((category: any) => {
       orderedByAmount.push([category.category, category.total, category.color]);
-      orderedByCategory.push({name: category.category, icon: category.icon, totalAmount: category.total, fill: category.color, lastExpense: category.lastExpense })
+      orderedByCategory.push({name: category.category, categoryId: category.categoryId, icon: category.icon, totalAmount: category.total, fill: category.color, lastExpense: category.lastExpense })
     })
     
     updateCategoriesOrderByAmount(orderedByAmount);
@@ -46,6 +47,9 @@ export const useCategory = () => {
     categories,
     categoriesOrderByAmount,
     expensesByCategory,
-    addNewCategory
+    addNewCategory,
+    deleteCategory
   };
+
+  // Adicionar feedback de sucesso quando apagar a categoria
 }

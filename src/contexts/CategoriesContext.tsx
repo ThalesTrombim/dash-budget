@@ -2,6 +2,8 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 
 import { Category } from "../types/categories";
 import { useFirebaseMethods } from "../hooks/useFirebaseMethods";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase.config";
 
 interface CategoriesContext {
   categories: any[];
@@ -10,6 +12,7 @@ interface CategoriesContext {
   addNewCategory: (newCategory: { name: string; icon: string }) => void;
   updateCategoriesOrderByAmount: (value: any) => void;
   updateExpensesByCategory: (value: any) => void;
+  deleteCategory: (category: string) => void;
 }
 
 export const CategoriesContext = createContext({} as CategoriesContext)
@@ -32,7 +35,20 @@ function CategoriesContextProvider({ children }: { children: ReactNode }) {
   }
 
   async function addNewCategory(newCategory: { name: string; icon: string }){
-    AddFirebaseDoc('categories', newCategory)
+    const res = await AddFirebaseDoc('categories', newCategory);
+    console.log('res', res);
+    
+    await updateDoc(doc(db, "categories", res.id), {
+      categoryId: res.id,
+    });
+
+    setCategories((prevCategories: any) => [...prevCategories, newCategory]);
+  }
+
+  async function deleteCategory(id: string): Promise<void> {
+    await deleteDoc(doc(db, 'categories', id));
+    
+    setCategories(categories.filter(category => category.categoryId!== id));
   }
   
   useEffect(() => {
@@ -52,7 +68,8 @@ function CategoriesContextProvider({ children }: { children: ReactNode }) {
       expensesByCategory,
       addNewCategory,
       updateCategoriesOrderByAmount,
-      updateExpensesByCategory
+      updateExpensesByCategory,
+      deleteCategory
     }}>
       { children }
     </CategoriesContext.Provider>

@@ -24,9 +24,9 @@ function CategoriesView() {
   const [selectedExpenseId, setSelectedExpenseId] = useState('');
   const [selectedExpense, setSelectedExpense] = useState<any>();
 
+  const { deleteCategory } = useCategory();
   function handleDelete(expenseId: string) {
-    setSelectedExpenseId(expenseId);
-    setIsConfirmationDeleteModalOpen(true);
+    deleteCategory(expenseId);
   }
 
   // TODO: Ao remover uma categoria, remover todos os gastos dela
@@ -89,21 +89,23 @@ function CategoriesView() {
           <div className="mt-8">
             <ul className="flex-col text-start gap-2 hidden md:flex">
               {
-                expensesByCategory.map((category: any) => {
-                  return category.totalAmount > 0 ? (
+                expensesByCategory.map((category: any) => 
+                  (
+                  // return category.totalAmount > 0 ? (
                     <CategoryListItem
                       name={category.name}
                       icon={category.icon}
                       totalAmount={category.totalAmount}
                       lastExpenseName={category.lastExpense?.name}
                       lastExpenseDate={category.lastExpense?.date}
+                      handleDeleteCategory={() => handleDelete(category.categoryId)}
                     />
-                  ) : null
-                })
+                  // ) : null
+                  )
+              )
               }
             </ul>
           </div>
-
         </div>
       </div>
     </>
